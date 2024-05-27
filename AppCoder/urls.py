@@ -4,9 +4,11 @@ from AppCoder import views
 #from proyecto_django_lumaca.views import prueba
 
 urlpatterns = [
-    path('', views.inicio,name="Inicio"),
+    path('', views.padre,name="Padre"),
+    path('inicio', views.inicio,name="Inicio"),
     path('entregables', views.entregables,name="Entregables"),
     path('profesores', views.profesores,name="Profesores"),
     path('cursos', views.cursos,name="Cursos"),
-    path('estudiantes', views.estudiantes,name="Estudiantes")
+    path('estudiantes', views.estudiantes,name="Estudiantes"),
+    path('estudiantesForm', views.estudianteForm,name="FormEstudiantes")
 ]
