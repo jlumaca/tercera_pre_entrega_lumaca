@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import Template, Context,loader
 from AppCoder.models import Estudiante
+from django.db import connection
 from AppCoder.forms import EstudianteFormulario
 
 # Create your views here.
@@ -28,6 +29,15 @@ def cursos(req):
 def formEstudiantes(req):
     return render(req,"estudiantes.html")
 
+def ingresarEstudiante(req):
+    return render(req,"formIngresarEstudiante.html")
+
+def buscarUnEstudiante(req):
+    return render(req,"formConsultarEstudiante.html")
+
+def buscarEstudiantes(req):
+    return render(req,"formConsultarTodosEstudiantes.html")
+
 def estudianteForm(req):
 
     if req.method == 'POST':
@@ -36,3 +46,22 @@ def estudianteForm(req):
             return render(req, "estudiantes.html")
  
     return render(req,"estudiantes.html")
+
+def buscarEstudiante(req):
+    try:
+        if req.GET['documentoEstudiante']:
+            doc = req.GET['documentoEstudiante']
+            estudiante = Estudiante.objects.filter(documento__icontains=doc)
+            return render(req, "estudiantes.html", {"estudiante": estudiante})
+    
+    except:
+        print("error")
+    
+    finally:
+        connection.close()
+
+def buscarEstudiantesTodos(req):
+    
+    if req.method == "GET":
+        estudiantes = Estudiante.objects.all()
+        return render(req, "estudiantes.html", {"estudiantes": estudiantes})

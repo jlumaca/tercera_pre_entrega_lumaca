@@ -3,79 +3,18 @@
 
 {% block contenidoQueCambia %}
 
-  
+{% url 'IngresarEstudiante' %}
 <label for="opcionEtiqueta">Elige una opción: </label>
-    <select id="opcionEst" onchange="prueba()">
-        <option value="ingresoEst">Ingresar</option>
-        <option value="consultarEst">Consultar</option>
-        <option value="todosEst">Consultar todos</option>
+    <select id="opcionEst" onchange="prueba2()">
+        <option value="{% url 'IngresarEstudiante' %}">Ingresar</option>
+        <option value="{% url 'ConsultarEstudiante' %}">Consultar</option>
+        <option value="{% url 'ConsultarEstudiantes' %}">Consultar todos</option>
     </select>
-<div class="page-content page-container" id="page-content">
-        <div class="padding">
-            <div class="row container d-flex justify-content-center">
-    <div class="col-md-6 col-lg-4">
-                <form id="FormIngresarEstudiante" class="card" action="estudiantesForm" method="POST">{% csrf_token %}
-                  <h5 id="tituloFormEst" class="card-title fw-400">Ingresar nuevo estudiante</h5>
-    
-                  <div class="card-body">
-                    <div class="form-group">
-                      <input class="form-control" type="text" placeholder="Documento" name="documentoEstudiante" id="documentoEst">
-                    </div>
-    
-                    <div class="form-group">
-                      <input class="form-control" type="text" placeholder="Nombre" name="nombreEstudiante" id="nombreEst">
-                    </div>
-    
-                    <div class="form-group">
-                      <input class="form-control" type="text" placeholder="Apellido" name="apellidoEstudiante" id="apellidoEst">
-                    </div>
-
-                    <div class="form-group">
-                      <input class="form-control" type="text" placeholder="Email" name="emailEstudiante" id="emailEst">
-                    </div>
-
-                    <div class="form-group">
-                      <input class="form-control" type="text" placeholder="Telefono" name="telefonoEstudiante" id="telefonoEst">
-                    </div>
-    
-    
-                    <input type="submit" class="btn btn-block btn-bold btn-primary" id="btnEnviarEst" value="Enviar">
-                    
-                  
-                  </div>
-                </form>
-
-                <form id="FormConsultarEstudiante" class="card" action="estudiantesForm" method="POST" style="display: none;">{% csrf_token %}
-                  <h5 id="tituloFormEst" class="card-title fw-400">Ingresar nuevo estudiante</h5>
-    
-                  <div class="card-body">
-                    <div class="form-group">
-                      <input class="form-control" type="text" placeholder="Documento" name="documentoEstudiante" id="documentoEst">
-                    </div>
-    
-                    
-                    <input type="submit" class="btn btn-block btn-bold btn-primary" id="btnBuscarEst" value="Buscar">
-                    
-                  
-                  </div>
-                </form>
 
 
-                <form id="FormConsultarEstudiantesTodos" class="card" action="estudiantesForm" method="POST" style="display: none;">{% csrf_token %}
-                  <h5 id="tituloFormEst" class="card-title fw-400">Ingresar nuevo estudiante</h5>
+        {% block contenidoQueCambiaFormsEst %}
 
-                    <input type="submit" class="btn btn-block btn-bold btn-primary" id="btnTodosEst" value="Buscar todos">
-                  
-                  </div>
-                </form>
-
-
-
-
-
-
-              </div>
-               </div>
-                </div>
-                 </div>
+        {% endblock %}
+            
+             
 {% endblock %}
