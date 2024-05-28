@@ -1,0 +1,26 @@
+{% extends "estudiantes.html" %}
+{% load static %}
+
+{% block contenidoQueCambiaFormsEst %}
+    <form id="FormConsultarEstudiantesTodos" class="card" action="buscarEstudiantes" method="GET" style="display: none;">{% csrf_token %}
+    <h5 id="tituloFormEst" class="card-title fw-400">Consultar estudiantes</h5>
+
+      <input type="submit" class="btn btn-block btn-bold btn-primary" id="btnTodosEst" value="Buscar todos">
+    
+    {% if estudiantes %}
+      <ul>
+    {% for estudiante in estudiantes %}
+    <li>Documento: {{ estudiante.documento }} - Nombre: {{ estudiante.nombre }}</li>
+    
+    
+    {% endfor %}
+    </ul>
+
+    {% endif %}
+    </div>
+  </form>
+
+
+
+
+{% endblock %}

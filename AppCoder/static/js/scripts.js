@@ -72,3 +72,12 @@ function prueba(){
         formConsEstTodos.style.display = "block";
     }
 }
+
+function prueba2(){
+    var selectedOption = document.getElementById("opcionEst");
+
+    var url = selectedOption.options[selectedOption.selectedIndex].value;
+    if (url) {  // Verifica que la opción seleccionada tenga una URL
+        window.location.href = url;
+    }
+}
