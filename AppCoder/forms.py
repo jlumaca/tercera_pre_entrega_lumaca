@@ -6,3 +6,7 @@ class EstudianteFormulario(forms.Form):
     apellido = forms.CharField()
     email = forms.CharField()
     telefono = forms.CharField()
+
+class CursoFormulario(forms.Form):
+    nombre = forms.CharField()
+    comision = forms.IntegerField()

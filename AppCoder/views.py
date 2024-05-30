@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.template import Template, Context,loader
 from AppCoder.models import Estudiante,Curso
 #from django.db import connection
-from AppCoder.forms import EstudianteFormulario
+from AppCoder.forms import EstudianteFormulario,CursoFormulario
 
 # Views principales
 #################
@@ -19,31 +19,11 @@ def entregables(req):
 def profesores(req):
     return render(req,"Profesores/profesores.html")
 
-def cursos(req):
-    return render(req,"Cursos/cursos.html")
 
 ##########
-def cursoForm(req):
 
-    if req.method == 'POST':
-            nuevo_curso = Curso(nombre = req.POST['nombreCurso'],comision = req.POST['comisionCurso'])
-            nuevo_curso.save()
-            return render(req, "cursos.html")
- 
-    return render(req,"cursos.html")
 
-def buscarCurso(req):
-   
-        if req.GET['documentoEstudiante']:
-            doc = req.GET['documentoEstudiante']
-            estudiante = Estudiante.objects.filter(documento__icontains=doc)
-            return render(req, "estudiantes.html", {"estudiante": estudiante})   
-  
-def buscarCursosTodos(req):
-    
-    if req.method == "GET":
-        estudiantes = Curso.objects.all()
-        return render(req, "cursos.html", {"cursos": estudiantes})
+
 
 
 def estudianteForm(req):
@@ -94,3 +74,52 @@ def buscarEstudiantesTodos(req):
     if req.method == "GET":
         estudiantes = Estudiante.objects.all()
         return render(req, "Estudiantes/formConsultarTodosEstudiantes.html", {"estudiantes": estudiantes})
+
+def cursoForm(req):
+    print('method: ', req.method)
+    print('POST: ', req.POST)
+
+    if req.method == 'POST':
+
+        miFormulario = CursoFormulario(req.POST)
+
+        if miFormulario.is_valid():
+
+            informacion = miFormulario.cleaned_data
+
+            nuevo_curso = Curso(nombre = informacion['nombre'], comision = informacion['comision'])
+            nuevo_curso.save()
+
+            return render(req, "Cursos/cursos.html", {"message": "Curso ingresado con éxito"})
+        
+        else:
+
+            return render(req, "Cursos/cursos.html", {"message": "Datos inválidos"})
+    
+    else:
+
+        miFormulario = CursoFormulario()
+
+        return render(req, "Cursos/cursos.html", {"miFormulario": miFormulario})
+    
+
+
+def buscarCursoY(req):
+   
+        if req.GET["comisionCurso"]:
+
+            comision = req.GET["comisionCurso"]
+
+            curso = Curso.objects.filter(comision__icontains=comision)
+
+            return render(req, "Cursos/formConsultarCurso.html", {"cursos": curso, "comision": comision})
+
+        else:
+      
+            return render(req, "Cursos/formConsultarCurso.html", {"message": "No envias el dato del curso"})  
+  
+def buscarCursosTodos(req):
+    
+    if req.method == "GET":
+        estudiantes = Curso.objects.all()
+        return render(req, "Cursos/formConsultarTodosCursos.html", {"cursos": estudiantes})

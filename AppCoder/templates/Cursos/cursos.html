@@ -21,44 +21,29 @@
         <form id="FormIngresarCurso" class="card" action="cursosForm" method="POST">{% csrf_token %}
             <h5 id="tituloFormCurso" class="card-title fw-400">Ingresar nuevo curso</h5>
         
-            <div class="card-body">
-              <div class="form-group">
-                <input class="form-control" type="text" placeholder="Curso" name="nombreCurso" id="nombreCurso">
-              </div>
-        
-              <div class="form-group">
-                <input class="form-control" type="number" placeholder="Comisión" name="comisionCurso" id="comisionCurso">
-              </div>
+            {{miFormulario.as_p}}
 
-              <input type="submit" class="btn btn-block btn-bold btn-primary" id="btnEnviarCurso" value="Enviar">
+            <button type="submit"> Crear </button>   
+            
+            
+            <p>{{message}}</p>
+
+              
               
             
             </div>
           </form>
 
-    <form id="FormConsultarCurso" class="card" action="buscarEstudiante" method="GET" style="display: none;">{% csrf_token %}
+    <form id="FormConsultarCurso" class="card" action="{% url 'BuscarCurso' %}" method="GET" style="display: none;">{% csrf_token %}
         <h5 id="tituloFormEst" class="card-title fw-400">Consultar curso</h5>
     
         <div class="card-body">
-          <div class="form-group">
-            <input class="form-control" type="text" placeholder="Curso" name="nombreCurso" id="nombreCurso">
-          </div>
           <div class="form-group">
             <input class="form-control" type="text" placeholder="Comision" name="comisionCurso" id="comisionCurso">
           </div>
     
           
           <input type="submit" class="btn btn-block btn-bold btn-primary" id="btnBuscarCurso" value="Buscar">
-          {% if curso %}
-          <ul>
-          {% for curso in cursos %}
-          <li>Curso: {{ curso.nombre }} - Comision: {{ curso.comision }}</li>
-        
-        
-          {% endfor %}
-          </ul>
-    
-          {% endif %}
         
         </div>
       </form>

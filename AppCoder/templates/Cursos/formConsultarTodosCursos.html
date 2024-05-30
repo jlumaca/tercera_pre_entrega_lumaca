@@ -1,0 +1,41 @@
+{% extends "padre.html" %}
+{% load static %}
+
+{% block contenidoQueCambia %}
+  
+<div class="page-content page-container" id="page-content"></div>
+<div class="padding">
+  <div class="row container d-flex justify-content-center">
+<div class="col-md-6 col-lg-4">
+
+{% if cursos %}
+
+<ul>
+  {% for curso in cursos %}
+    
+    <li>
+      {{curso.nombre}} - {{curso.comision}}
+    </li>
+      
+  {% endfor %}
+
+</ul>
+
+{% else %}
+
+  <p>No se encontraron datos!</p>
+
+{% endif %}
+<form id="" class="card" action="{% url 'Cursos' %}" method="GET">
+  <input type="submit" class="btn btn-block btn-bold btn-primary" id="btnVolverEst" value="Volver">
+</form>
+
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+{% endblock %}
