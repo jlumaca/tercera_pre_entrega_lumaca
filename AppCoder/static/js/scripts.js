@@ -52,7 +52,7 @@ function opcionFormEstudiantes() {
     }
 }
 
-function prueba(){
+function opcionesEst(){
     var selectedOption = document.getElementById("opcionEst").value;
     var formIngEst = document.getElementById("FormIngresarEstudiante");
     var formConsEst = document.getElementById("FormConsultarEstudiante");
@@ -70,6 +70,28 @@ function prueba(){
         formIngEst.style.display = "none";
         formConsEst.style.display = "none";
         formConsEstTodos.style.display = "block";
+    }
+}
+
+
+function opcionesCursos(){
+    var selectedOption = document.getElementById("opcionCursos").value;
+    var formIngCurso = document.getElementById("FormIngresarCurso");
+    var formConsCurso = document.getElementById("FormConsultarCurso");
+    var formConsCursosTodos = document.getElementById("FormConsultarCursosTodos");
+
+    if (selectedOption == "ingresoCurso"){
+        formIngCurso.style.display = "block";
+        formConsCurso.style.display = "none";
+        formConsCursosTodos.style.display = "none";
+    }else if (selectedOption == "consultarCurso"){
+        formIngCurso.style.display = "none";
+        formConsCurso.style.display = "block";
+        formConsCursosTodos.style.display = "none";
+    }else {
+        formIngCurso.style.display = "none";
+        formConsCurso.style.display = "none";
+        formConsCursosTodos.style.display = "block";
     }
 }
 

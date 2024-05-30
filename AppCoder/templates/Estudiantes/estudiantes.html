@@ -1,0 +1,62 @@
+{% extends "padre.html" %}
+{% load static %}
+
+{% block contenidoQueCambia %}
+
+
+<label for="opcionEtiqueta">Elige una opción: </label>
+    <select id="opcionEst" onchange="opcionesEst()">
+       
+
+        <option value="ingresoEst">Ingresar</option>
+        <option value="consultarEst">Consultar</option>
+        <option value="buscarEstudiantes">Consultar todos</option>
+    </select>
+
+    <div class="page-content page-container" id="page-content">
+        <div class="padding">
+            <div class="row container d-flex justify-content-center">
+      <div class="col-md-6 col-lg-4">
+        
+        <form id="FormIngresarEstudiante" class="card" action="{% url 'Estudiantes' %}" method="POST">{% csrf_token %}
+            <h5 id="tituloFormEst" class="card-title fw-400">Ingresar nuevo estudiante</h5>
+        
+            {{miFormulario.as_p}}
+
+            <button type="submit"> Crear </button>   
+            
+            
+            <p>{{message}}</p>
+        
+        </form>
+        
+    <form id="FormConsultarEstudiante" class="card" action="{% url 'BuscarEstudiante' %}" method="GET" style="display: none;">
+        <h5 id="tituloFormEst" class="card-title fw-400">Consultar estudiante</h5>
+    
+        <div class="card-body">
+          <div class="form-group">
+            <input class="form-control" type="text" placeholder="Documento" name="documentoEstudiante" id="documentoEst">
+          </div>
+          
+          
+          <input type="submit" class="btn btn-block btn-bold btn-primary" id="btnBuscarEst" value="Buscar">
+          
+        
+        </div>
+      </form>
+
+
+      <form id="FormConsultarEstudiantesTodos" class="card" action="{% url 'BuscarEstudiantes' %}" method="GET" style="display: none;">{% csrf_token %}
+        <h5 id="tituloFormEst" class="card-title fw-400">Consultar estudiantes</h5>
+    
+          
+          <div class="card-body">
+            <input type="submit" class="btn btn-block btn-bold btn-primary" id="btnTodosEst" value="Buscar todos">
+        </div>
+      </form>
+    </div>
+</div>
+ </div>
+  </div>        
+             
+{% endblock contenidoQueCambia%}

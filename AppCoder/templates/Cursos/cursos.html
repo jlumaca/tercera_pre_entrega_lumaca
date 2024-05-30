@@ -1,0 +1,89 @@
+{% extends "padre.html" %}
+{% load static %}
+
+{% block contenidoQueCambia %}
+
+
+<label for="opcionEtiqueta">Elige una opción: </label>
+    <select id="opcionCursos" onchange="opcionesCursos()">
+  
+
+        <option value="ingresoCurso">Ingresar</option>
+        <option value="consultarCurso">Consultar</option>
+        <option value="buscarCurso">Consultar todos</option>
+    </select>
+
+    <div class="page-content page-container" id="page-content">
+        <div class="padding">
+            <div class="row container d-flex justify-content-center">
+      <div class="col-md-6 col-lg-4">
+        
+        <form id="FormIngresarCurso" class="card" action="cursosForm" method="POST">{% csrf_token %}
+            <h5 id="tituloFormCurso" class="card-title fw-400">Ingresar nuevo curso</h5>
+        
+            <div class="card-body">
+              <div class="form-group">
+                <input class="form-control" type="text" placeholder="Curso" name="nombreCurso" id="nombreCurso">
+              </div>
+        
+              <div class="form-group">
+                <input class="form-control" type="number" placeholder="Comisión" name="comisionCurso" id="comisionCurso">
+              </div>
+
+              <input type="submit" class="btn btn-block btn-bold btn-primary" id="btnEnviarCurso" value="Enviar">
+              
+            
+            </div>
+          </form>
+
+    <form id="FormConsultarCurso" class="card" action="buscarEstudiante" method="GET" style="display: none;">{% csrf_token %}
+        <h5 id="tituloFormEst" class="card-title fw-400">Consultar curso</h5>
+    
+        <div class="card-body">
+          <div class="form-group">
+            <input class="form-control" type="text" placeholder="Curso" name="nombreCurso" id="nombreCurso">
+          </div>
+          <div class="form-group">
+            <input class="form-control" type="text" placeholder="Comision" name="comisionCurso" id="comisionCurso">
+          </div>
+    
+          
+          <input type="submit" class="btn btn-block btn-bold btn-primary" id="btnBuscarCurso" value="Buscar">
+          {% if curso %}
+          <ul>
+          {% for curso in cursos %}
+          <li>Curso: {{ curso.nombre }} - Comision: {{ curso.comision }}</li>
+        
+        
+          {% endfor %}
+          </ul>
+    
+          {% endif %}
+        
+        </div>
+      </form>
+
+
+      <form id="FormConsultarCursosTodos" class="card" action="buscarCursos" method="GET" style="display: none;">{% csrf_token %}
+        <h5 id="tituloFormEst" class="card-title fw-400">Consultar cursos</h5>
+    
+          <input type="submit" class="btn btn-block btn-bold btn-primary" id="btnTodosCursos" value="Buscar todos">
+        
+        {% if cursos %}
+          <ul id="DatosConsultaEstudiante">
+        {% for curso in cursos %}
+        <li>Nombre: {{ curso.nombre }} - Comision: {{ curso.comision }}</li>
+        
+        
+        {% endfor %}
+        </ul>
+    
+        {% endif %}
+        </div>
+      </form>
+    </div>
+</div>
+ </div>
+  </div>        
+             
+{% endblock %}
