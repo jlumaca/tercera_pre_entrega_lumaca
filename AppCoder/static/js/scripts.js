@@ -95,6 +95,29 @@ function opcionesCursos(){
     }
 }
 
+
+
+function opcionesProf(){
+    var selectedOption = document.getElementById("opcionProf").value;
+    var formIngProfesor = document.getElementById("FormIngresarProfesor");
+    var formConsProfesor = document.getElementById("FormConsultarProfesor");
+    var formConsProfesoresTodos = document.getElementById("FormConsultarProfesoresTodos");
+
+    if (selectedOption == "ingresoProf"){
+        formIngProfesor.style.display = "block";
+        formConsProfesor.style.display = "none";
+        formConsProfesoresTodos.style.display = "none";
+    }else if (selectedOption == "consultarProf"){
+        formIngProfesor.style.display = "none";
+        formConsProfesor.style.display = "block";
+        formConsProfesoresTodos.style.display = "none";
+    }else {
+        formIngProfesor.style.display = "none";
+        formConsProfesor.style.display = "none";
+        formConsProfesoresTodos.style.display = "block";
+    }
+}
+
 function prueba2(){
     var selectedOption = document.getElementById("opcionEst");
 

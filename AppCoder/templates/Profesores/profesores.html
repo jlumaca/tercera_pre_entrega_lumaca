@@ -2,36 +2,56 @@
 {% load static %}
 
 {% block contenidoQueCambia %}
+<label for="opcionEtiqueta">Elige una opción: </label>
+    <select id="opcionProf" onchange="opcionesProf()">
+       
+
+        <option value="ingresoProf">Ingresar</option>
+        <option value="consultarProf">Consultar</option>
+        <option value="buscarProfs">Consultar todos</option>
+    </select>
 <div class="page-content page-container" id="page-content">
         <div class="padding">
             <div class="row container d-flex justify-content-center">
     <div class="col-md-6 col-lg-4">
-                <form class="card">
+                <form id="FormIngresarProfesor" class="card" action="{% url 'Profesores' %}" method="POST">{% csrf_token %}
                   <h5 class="card-title fw-400">Ingresar Profesor</h5>
     
-                  <div class="card-body">
-                    <div class="form-group">
-                      <input class="form-control" type="text" placeholder="Documento">
-                    </div>
-    
-                    <div class="form-group">
-                      <input class="form-control" type="text" placeholder="Nombre">
-                    </div>
-    
-                    <div class="form-group">
-                      <input class="form-control" type="text" placeholder="Apellido">
-                    </div>
+                  {{miFormulario.as_p}}
 
-                    <div class="form-group">
-                        <input class="form-control" type="text" placeholder="Curso">
-                      </div>
-    
-    
-                    <input type="submit" class="btn btn-block btn-bold btn-primary" value="Enviar">
-                  </div>
-                </form>
-              </div>
-               </div>
+                  <button type="submit"> Crear </button>   
+            
+            
+                  <p>{{message}}</p>                
+          
+            </form>
+
+            <form id="FormConsultarProfesor" class="card" action="{% url 'BuscarProfesor' %}" method="GET" style="display: none;">
+              <h5 id="tituloFormEst" class="card-title fw-400">Consultar profesor</h5>
+          
+              <div class="card-body">
+                <div class="form-group">
+                  <input class="form-control" type="text" placeholder="Documento" name="documentoProfesor" id="documentoProf">
                 </div>
-                 </div>
+                
+                
+                <input type="submit" class="btn btn-block btn-bold btn-primary" id="btnBuscarProf" value="Buscar">
+                
+              
+              </div>
+            </form>
+      
+      
+            <form id="FormConsultarProfesoresTodos" class="card" action="{% url 'BuscarProfesores' %}" method="GET" style="display: none;">
+              <h5 id="tituloFormEst" class="card-title fw-400">Consultar profesores</h5>
+          
+                
+                <div class="card-body">
+                  <input type="submit" class="btn btn-block btn-bold btn-primary" id="btnTodosProf" value="Buscar todos">
+              </div>
+            </form>
+        </div>
+      </div>
+    </div>
+    </div>
 {% endblock %}

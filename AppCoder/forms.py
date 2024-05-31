@@ -10,3 +10,12 @@ class EstudianteFormulario(forms.Form):
 class CursoFormulario(forms.Form):
     nombre = forms.CharField()
     comision = forms.IntegerField()
+
+
+class ProfesorFormulario(forms.Form):
+    documento = forms.CharField()
+    nombre = forms.CharField()
+    apellido = forms.CharField()
+    email = forms.CharField()
+    telefono = forms.CharField()
+    curso = forms.CharField()
