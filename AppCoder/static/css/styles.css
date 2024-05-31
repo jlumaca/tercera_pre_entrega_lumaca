@@ -10929,11 +10929,12 @@ footer.footer {
 }
 
 .padding {
-  padding: 3rem !important
+  padding: 0rem !important
 }
 
 body {
-  background-color: #f9f9fa
+  background-color: #f9f9fa;
+  
 }
 
 h5.card-title {
@@ -10942,6 +10943,7 @@ h5.card-title {
 
 .fw-400 {
   font-weight: 400 !important;
+
 }
 
 .card-title {
@@ -10949,14 +10951,19 @@ h5.card-title {
   font-weight: 300;
   line-height: 1.5;
   margin-bottom: 0;
-  padding: 15px 20px;
-  border-bottom: 1px solid rgba(77,82,89,0.07);
-}
+  padding: 10px 20px;
+  border-bottom: 0px solid rgba(77,82,89,0.07);
+  background-color: #9f97d1;
+  height: 30px;
+
+  }
 
 .card-body {
   -ms-flex: 1 1 auto;
   flex: 1 1 auto;
   padding: 1.25rem;
+  background-color: #9f97d1;
+  
 }
 
 .form-group {
@@ -10967,15 +10974,17 @@ h5.card-title {
   border-color: #ebebeb;
   border-radius: 2px;
   color: #8b95a5;
-  padding: 5px 12px;
+  padding: 10px 12px;
   font-size: 14px;
   line-height: inherit;
   -webkit-transition: 0.2s linear;
   transition: 0.2s linear;
+  margin-top: 10px;
 }
 
 .card-body>*:last-child {
-  margin-bottom: 0;
+  margin-bottom: 1px;
+  margin-top: 0px;
 }
 
 .btn-primary {
@@ -11023,4 +11032,8 @@ h5.card-title {
   background-color: #e9ecef;
   border-radius: 5px; 
   padding: 5px 10px;
+}
+
+.etiquetaOpciones {
+  color:white;
 }
