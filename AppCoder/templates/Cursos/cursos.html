@@ -6,11 +6,11 @@
 
 <label for="opcionEtiqueta">Elige una opción: </label>
     <select id="opcionCursos" onchange="opcionesCursos()">
-  
+       
 
         <option value="ingresoCurso">Ingresar</option>
         <option value="consultarCurso">Consultar</option>
-        <option value="buscarCurso">Consultar todos</option>
+        <option value="buscarCursos">Consultar todos</option>
     </select>
 
     <div class="page-content page-container" id="page-content">
@@ -18,52 +18,49 @@
             <div class="row container d-flex justify-content-center">
       <div class="col-md-6 col-lg-4">
         
-        <form id="FormIngresarCurso" class="card" action="cursosForm" method="POST">{% csrf_token %}
-            <h5 id="tituloFormCurso" class="card-title fw-400">Ingresar nuevo curso</h5>
-        
-            {{miFormulario.as_p}}
-
-            <button type="submit"> Crear </button>   
-            
-            
-            <p>{{message}}</p>
-
+        <form id="FormIngresarCurso" class="card" action="{% url 'Cursos' %}" method="POST">{% csrf_token %}
+            <h5 id="tituloFormEst" class="card-title fw-400">Ingresar nuevo cursos</h5>
+            <div class="card-body">
+              <p>{{message}}</p>
               
-              
-            
+            <div class="form-group">
+              {{ miFormulario.nombre }}
             </div>
-          </form>
-
-    <form id="FormConsultarCurso" class="card" action="{% url 'BuscarCurso' %}" method="GET" style="display: none;">{% csrf_token %}
+            <div class="form-group">
+              {{ miFormulario.comision }}
+            </div>
+            <div class="form-group">
+              {{ miFormulario.submit }}
+            </div>
+            
+          </div>
+            
+        
+        </form>
+        
+    <form id="FormConsultarCurso" class="card" action="{% url 'BuscarCurso' %}" method="GET" style="display: none;">
         <h5 id="tituloFormEst" class="card-title fw-400">Consultar curso</h5>
     
         <div class="card-body">
           <div class="form-group">
-            <input class="form-control" type="text" placeholder="Comision" name="comisionCurso" id="comisionCurso">
+            <input class="form-control" type="number" placeholder="Comision" name="comisionCurso" id="comisionCurso">
           </div>
-    
+          
           
           <input type="submit" class="btn btn-block btn-bold btn-primary" id="btnBuscarCurso" value="Buscar">
+          
         
         </div>
       </form>
 
 
-      <form id="FormConsultarCursosTodos" class="card" action="buscarCursos" method="GET" style="display: none;">{% csrf_token %}
-        <h5 id="tituloFormEst" class="card-title fw-400">Consultar cursos</h5>
+      <form id="FormConsultarCursosTodos" class="card" action="{% url 'BuscarCursos' %}" method="GET" style="display: none;">
+        <h5 id="tituloFormCurso" class="card-title fw-400">Consultar cursos</h5>
     
-          <input type="submit" class="btn btn-block btn-bold btn-primary" id="btnTodosCursos" value="Buscar todos">
-        
-        {% if cursos %}
-          <ul id="DatosConsultaEstudiante">
-        {% for curso in cursos %}
-        <li>Nombre: {{ curso.nombre }} - Comision: {{ curso.comision }}</li>
-        
-        
-        {% endfor %}
-        </ul>
-    
-        {% endif %}
+          
+          <div class="card-body">
+            <input type="submit" class="btn btn-block btn-bold btn-primary" id="btnTodosCursos" value="Buscar todos">
+          </div>
         </div>
       </form>
     </div>
@@ -71,4 +68,4 @@
  </div>
   </div>        
              
-{% endblock %}
+{% endblock contenidoQueCambia%}

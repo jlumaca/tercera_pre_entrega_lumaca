@@ -17,12 +17,34 @@
                 <form id="FormIngresarProfesor" class="card" action="{% url 'Profesores' %}" method="POST">{% csrf_token %}
                   <h5 class="card-title fw-400">Ingresar Profesor</h5>
     
-                  {{miFormulario.as_p}}
-
-                  <button type="submit"> Crear </button>   
+                  <div class="card-body">
+                    <p>{{message}}</p>
+                    <div class="form-group">
+                    {{ miFormulario.documento }}
+                  </div>
+                  <div class="form-group">
+                    {{ miFormulario.nombre }}
+                  </div>
+                  <div class="form-group">
+                    {{ miFormulario.apellido }}
+                  </div>
+                  <div class="form-group">
+                    {{ miFormulario.email }}
+                  </div>
+                  <div class="form-group">
+                    {{ miFormulario.telefono }}
+                  </div>
+                  <div class="form-group">
+                    {{ miFormulario.curso }}
+                  </div>
+                  <div class="form-group">
+                    {{ miFormulario.submit }}
+                  </div>
+                  
+                </div> 
             
             
-                  <p>{{message}}</p>                
+                                  
           
             </form>
 
@@ -31,7 +53,7 @@
           
               <div class="card-body">
                 <div class="form-group">
-                  <input class="form-control" type="text" placeholder="Documento" name="documentoProfesor" id="documentoProf">
+                  <input class="form-control" type="number" placeholder="Documento" name="documentoProfesor" id="documentoProf">
                 </div>
                 
                 

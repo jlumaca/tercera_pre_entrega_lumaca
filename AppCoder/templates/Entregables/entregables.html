@@ -18,12 +18,24 @@
                 <form id="FormIngresarEntregable" class="card" action="{% url 'Entregables' %}" method="POST">{% csrf_token %}
                   <h5 class="card-title fw-400">Ingresar Entregable</h5>
   
-                  {{miFormulario.as_p}}
-
-                  <button type="submit"> Crear </button>   
+                  <div class="card-body">
+                    <p>{{message}}</p>
+                    <div class="form-group">
+                    {{ miFormulario.nombre }}
+                  </div>
+                  <div class="form-group">
+                    {{ miFormulario.fecha_de_entrega }}
+                  </div>
+                  <div class="form-group">
+                    <label for="id_entregado" class="form-check-label">Entregado: </label>
+                    {{ miFormulario.entregado }}
+                    
+                  </div>
+                  <div class="form-group">
+                    {{ miFormulario.submit }}
+                  </div>
                   
-                  
-                  <p>{{message}}</p>
+                </div>
       
                  
                 </form>
@@ -44,8 +56,8 @@
           
           
                 <form id="FormConsultarEntregablesTodos" class="card" action="{% url 'BuscarEntregables' %}" method="GET" style="display: none;">{% csrf_token %}
-                  <h5 id="tituloFormEst" class="card-title fw-400">Consultar cursos</h5>
-              
+                  <h5 id="tituloFormEst" class="card-title fw-400">Consultar entregables</h5>
+                  <div class="card-body">
                     <input type="submit" class="btn btn-block btn-bold btn-primary" id="btnTodosEntregables" value="Buscar todos">
                   
                 
