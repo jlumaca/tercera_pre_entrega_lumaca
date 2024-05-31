@@ -11,7 +11,7 @@ def padre(req):
     return render(req,"padre.html")
 
 def inicio(req):
-    return render(req,"inicio.html")
+    return render(req,"inicio.html",{'active_page': 'inicio'})
 
 def estudianteForm(req):
  
@@ -30,17 +30,17 @@ def estudianteForm(req):
       nuevo_estudiante = Estudiante(documento = informacion['documento'],nombre = informacion['nombre'],apellido = informacion['apellido'],email = informacion['email'],telefono = informacion['telefono'])
       nuevo_estudiante.save()
 
-      return render(req, "Estudiantes/estudiantes.html", {"message": "Estudiante ingresado con éxito"})
+      return render(req, "Estudiantes/estudiantes.html", {"message": "Estudiante ingresado con éxito",'active_page': 'estudiantes'})
     
     else:
 
-      return render(req, "Estudiantes/estudiantes.html", {"message": "Datos inválidos"})
+      return render(req, "Estudiantes/estudiantes.html", {"message": "Datos inválidos",'active_page': 'estudiantes'})
   
   else:
 
     miFormulario = EstudianteFormulario()
 
-    return render(req, "Estudiantes/estudiantes.html", {"miFormulario": miFormulario})
+    return render(req, "Estudiantes/estudiantes.html", {"miFormulario": miFormulario,'active_page': 'estudiantes'})
 
 def buscarEstudianteX(req):
 
@@ -77,17 +77,17 @@ def cursoForm(req):
             nuevo_curso = Curso(nombre = informacion['nombre'], comision = informacion['comision'])
             nuevo_curso.save()
 
-            return render(req, "Cursos/cursos.html", {"message": "Curso ingresado con éxito"})
+            return render(req, "Cursos/cursos.html", {"message": "Curso ingresado con éxito",'active_page': 'cursos'})
         
         else:
 
-            return render(req, "Cursos/cursos.html", {"message": "Datos inválidos"})
+            return render(req, "Cursos/cursos.html", {"message": "Datos inválidos",'active_page': 'cursos'})
     
     else:
 
         miFormulario = CursoFormulario()
 
-        return render(req, "Cursos/cursos.html", {"miFormulario": miFormulario})
+        return render(req, "Cursos/cursos.html", {"miFormulario": miFormulario,'active_page': 'cursos'})
     
 
 
@@ -126,16 +126,16 @@ def profesorForm(req):
             nuevo_profesor = Profesor(documento = informacion['documento'],nombre = informacion['nombre'],apellido = informacion['apellido'],email = informacion['email'],telefono = informacion['telefono'],profesion = informacion['curso'])
             nuevo_profesor.save()
 
-            return render(req, "Profesores/profesores.html", {"message": "Profesor ingresado con éxito"})
+            return render(req, "Profesores/profesores.html", {"message": "Profesor ingresado con éxito",'active_page': 'profesores'})
         
         else:
 
-            return render(req, "Profesores/profesores.html", {"message": "Datos inválidos"})
+            return render(req, "Profesores/profesores.html", {"message": "Datos inválidos",'active_page': 'profesores'})
     
     else:
 
         miFormulario = ProfesorFormulario()
-        return render(req, "Profesores/profesores.html", {"miFormulario": miFormulario})
+        return render(req, "Profesores/profesores.html", {"miFormulario": miFormulario,'active_page': 'profesores'})
 
 def buscarProfesorZ(req):
    
@@ -174,16 +174,16 @@ def entregablesForm(req):
             nuevo_entregable = Entregable(nombre = informacion['nombre'],fecha_entrega = informacion['fecha_de_entrega'],entregado = informacion['entregado'])
             nuevo_entregable.save()
 
-            return render(req, "Entregables/entregables.html", {"message": "Entregable ingresado con éxito"})
+            return render(req, "Entregables/entregables.html", {"message": "Entregable ingresado con éxito",'active_page': 'entregables'})
         
         else:
 
-            return render(req, "Entregables/entregables.html", {"message": "Datos inválidos"})
+            return render(req, "Entregables/entregables.html", {"message": "Datos inválidos",'active_page': 'entregables'})
     
     else:
 
         miFormulario = EntregableFormulario()
-        return render(req, "Entregables/entregables.html", {"miFormulario": miFormulario})
+        return render(req, "Entregables/entregables.html", {"miFormulario": miFormulario,'active_page': 'entregables'})
 
 def buscarEntregableW(req):
    

@@ -24,11 +24,11 @@
         <!-- Navigation-->
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
-                <a class="navbar-brand" href="{% url 'Inicio' %}">Inicio</a>
-                <a class="navbar-brand" href="{% url 'Estudiantes' %}">Estudiantes</a>
-                <a class="navbar-brand" href="{% url 'Cursos' %}">Cursos</a>
-                <a class="navbar-brand" href="{% url 'Entregables' %}">Entregables</a>
-                <a class="navbar-brand" href="{% url 'Profesores' %}">Profesores</a>
+                <a class="navbar-brand {% if active_page == 'inicio' %}active{% endif %}" href="{% url 'Inicio' %}">Inicio</a>
+                <a class="navbar-brand {% if active_page == 'estudiantes' %}active{% endif %}" href="{% url 'Estudiantes' %}">Estudiantes</a>
+                <a class="navbar-brand {% if active_page == 'cursos' %}active{% endif %}" href="{% url 'Cursos' %}">Cursos</a>
+                <a class="navbar-brand {% if active_page == 'entregables' %}active{% endif %}" href="{% url 'Entregables' %}">Entregables</a>
+                <a class="navbar-brand {% if active_page == 'profesores' %}active{% endif %}" href="{% url 'Profesores' %}">Profesores</a>
                 <a class="btn btn-primary" href="#signup">Iniciar sesión</a>
             </div>
         </nav>

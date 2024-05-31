@@ -10841,7 +10841,7 @@ textarea.form-control-lg {
 header.masthead {
   position: relative;
   background-color: #343a40;
-  background: url("../assets/img/bg-masthead.jpg") no-repeat center center;
+  background: url("../assets/img/python_fondo.png") no-repeat center center;
   background-size: cover;
   padding-top: 8rem;
   padding-bottom: 8rem;
@@ -11015,4 +11015,12 @@ h5.card-title {
   display: -webkit-box;
   display: flex;
   min-width: 18px;
+}
+
+.navbar-brand.active {
+  color: #17202A !important; 
+  font-weight: bold; 
+  background-color: #e9ecef;
+  border-radius: 5px; 
+  padding: 5px 10px;
 }
