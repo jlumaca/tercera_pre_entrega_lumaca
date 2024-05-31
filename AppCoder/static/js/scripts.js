@@ -118,6 +118,27 @@ function opcionesProf(){
     }
 }
 
+function opcionesEntregables(){
+    var selectedOption = document.getElementById("opcionEntregables").value;
+    var formIngEntregable = document.getElementById("FormIngresarEntregable");
+    var formConsEntregable = document.getElementById("FormConsultarEntregable");
+    var formConsEntregablesTodos = document.getElementById("FormConsultarEntregablesTodos");
+
+    if (selectedOption == "ingresoEntregables"){
+        formIngEntregable.style.display = "block";
+        formConsEntregable.style.display = "none";
+        formConsEntregablesTodos.style.display = "none";
+    }else if (selectedOption == "consultarEntregables"){
+        formIngEntregable.style.display = "none";
+        formConsEntregable.style.display = "block";
+        formConsEntregablesTodos.style.display = "none";
+    }else {
+        formIngEntregable.style.display = "none";
+        formConsEntregable.style.display = "none";
+        formConsEntregablesTodos.style.display = "block";
+    }
+}
+
 function prueba2(){
     var selectedOption = document.getElementById("opcionEst");
 

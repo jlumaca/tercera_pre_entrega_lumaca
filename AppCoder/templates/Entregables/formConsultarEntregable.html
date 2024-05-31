@@ -1,0 +1,39 @@
+{% extends "padre.html" %}
+{% load static %}
+
+{% block contenidoQueCambia %}
+<div class="page-content page-container" id="page-content"></div>
+<div class="padding">
+  <div class="row container d-flex justify-content-center">
+<div class="col-md-6 col-lg-4">
+<p>Entregables subidos el día: {{fecha_entregable}}</p>
+
+{% if entregables %}
+
+<ul>
+  {% for entregable in entregables %}
+    
+    <li>
+      {{entregable.nombre}} - {{entregable.entregado}}
+    </li>
+      
+  {% endfor %}
+
+</ul>
+
+{% else %}
+
+  <p>No se encontraron datos!</p>
+
+{% endif %}
+<form id="" class="card" action="{% url 'Entregables' %}" method="GET">
+  <input type="submit" class="btn btn-block btn-bold btn-primary" id="btnVolverEntregables" value="Volver">
+</form>
+
+
+</div>
+</div>
+</div>
+</div>
+
+{% endblock %}

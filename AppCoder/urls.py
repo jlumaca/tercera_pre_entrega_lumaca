@@ -15,7 +15,9 @@ urlpatterns = [
     path('profesores', views.profesorForm,name="Profesores"),#PROFESORES
     path('buscarProfesor', views.buscarProfesorZ,name="BuscarProfesor"),#PROFESORES
     path('buscarProfesores', views.buscarProfesoresTodos,name="BuscarProfesores"),#PROFESORES
-    path('entregables', views.entregables,name="Entregables"),#ENTREGABLES
+    path('entregables', views.entregablesForm,name="Entregables"),#ENTREGABLES
+    path('buscarEntregables', views.buscarEntregablesTodos,name="BuscarEntregables"),#ENTREGABLES
+    path('buscarEntregable', views.buscarEntregableW,name="BuscarEntregable"),#ENTREGABLES
     #path('estudiantesForm', views.estudianteForm,name="FormEstudiantes"),#
     
     

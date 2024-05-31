@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import Template, Context,loader
-from AppCoder.models import Estudiante,Curso,Profesor
+from AppCoder.models import Estudiante,Curso,Profesor,Entregable
 #from django.db import connection
-from AppCoder.forms import EstudianteFormulario,CursoFormulario, ProfesorFormulario
+from AppCoder.forms import EstudianteFormulario,CursoFormulario, ProfesorFormulario,EntregableFormulario
 
 # Views principales
 #################
@@ -12,18 +12,6 @@ def padre(req):
 
 def inicio(req):
     return render(req,"inicio.html")
-
-def entregables(req):
-    return render(req,"Entregables/entregables.html")
-
-
-
-
-##########
-
-
-
-
 
 def estudianteForm(req):
  
@@ -169,3 +157,52 @@ def buscarProfesoresTodos(req):
     if req.method == "GET":
         profesores = Profesor.objects.all()
         return render(req, "Profesores/formConsultarTodosProfesores.html", {"profesores": profesores})
+
+
+def entregablesForm(req):
+    print('method: ', req.method)
+    print('POST: ', req.POST)
+
+    if req.method == 'POST':
+
+        miFormulario = EntregableFormulario(req.POST)
+
+        if miFormulario.is_valid():
+
+            informacion = miFormulario.cleaned_data
+
+            nuevo_entregable = Entregable(nombre = informacion['nombre'],fecha_entrega = informacion['fecha_de_entrega'],entregado = informacion['entregado'])
+            nuevo_entregable.save()
+
+            return render(req, "Entregables/entregables.html", {"message": "Entregable ingresado con éxito"})
+        
+        else:
+
+            return render(req, "Entregables/entregables.html", {"message": "Datos inválidos"})
+    
+    else:
+
+        miFormulario = EntregableFormulario()
+        return render(req, "Entregables/entregables.html", {"miFormulario": miFormulario})
+
+def buscarEntregableW(req):
+   
+        if req.GET["fecha_entregable"]:
+
+            fecha_entrega = req.GET["fecha_entregable"]
+
+            entregable = Entregable.objects.filter(fecha_entrega__icontains=fecha_entrega)
+
+            return render(req, "Entregables/formConsultarEntregable.html", {"entregables": entregable, "fecha_entrega": fecha_entrega})
+
+        else:
+      
+            return render(req, "Entregables/formConsultarEntregable.html", {"message": "No envias el dato del entregable"})  
+    
+
+def buscarEntregablesTodos(req):
+    
+    if req.method == "GET":
+        entregables = Entregable.objects.all()
+        return render(req, "Entregables/formConsultarTodosEntregables.html", {"entregables": entregables})
+    
