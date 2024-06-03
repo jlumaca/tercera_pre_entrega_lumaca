@@ -13,13 +13,20 @@ def padre(req):
 def inicio(req):
     return render(req,"inicio.html",{'active_page': 'inicio'})
 
-def existePersona(documento):
+def existePersona(documento,que_persona):
     estudiante = Estudiante.objects.filter(documento__icontains=documento)
-
-    if estudiante:
-        return True
+    profesor = Profesor.objects.filter(documento__icontains=documento)
+    
+    if que_persona == "Est":
+        if estudiante:
+            return True
+        else:
+            return False
     else:
-        return False
+        if profesor:
+            return True
+        else:
+            return False
 
 def existeCurso(comision):
     curso = Curso.objects.filter(comision__icontains=comision)
@@ -42,7 +49,7 @@ def estudianteForm(req):
     if miFormulario.is_valid():
 
       informacion = miFormulario.cleaned_data
-      if existePersona(informacion['documento']):
+      if existePersona(informacion['documento'],"Est"):
         return render(req, "Estudiantes/estudiantes.html", {"message": "Estudiante ya existe",'active_page': 'estudiantes'})
       else:
         nuevo_estudiante = Estudiante(documento = informacion['documento'],nombre = informacion['nombre'],apellido = informacion['apellido'],email = informacion['email'],telefono = informacion['telefono'])
@@ -142,7 +149,7 @@ def profesorForm(req):
         if miFormulario.is_valid():
 
             informacion = miFormulario.cleaned_data
-            if existePersona(informacion['documento']):
+            if existePersona(informacion['documento'],"Prof"):
                 return render(req, "Profesores/profesores.html", {"message": "Profesor ya existe",'active_page': 'profesores'})
             else:
                 nuevo_profesor = Profesor(documento = informacion['documento'],nombre = informacion['nombre'],apellido = informacion['apellido'],email = informacion['email'],telefono = informacion['telefono'],profesion = informacion['curso'])
