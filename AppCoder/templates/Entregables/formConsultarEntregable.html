@@ -26,9 +26,7 @@
   <p>No se encontraron datos!</p>
 
 {% endif %}
-<form id="" class="card" action="{% url 'Entregables' %}" method="GET">
-  <input type="submit" class="btn btn-block btn-bold btn-primary" id="btnVolverEntregables" value="Volver">
-</form>
+<a href="{% url 'Entregables' %}" class="btn btn-block btn-bold btn-primary">Volver</a>
 
 
 </div>
