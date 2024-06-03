@@ -13,6 +13,22 @@ def padre(req):
 def inicio(req):
     return render(req,"inicio.html",{'active_page': 'inicio'})
 
+def existePersona(documento):
+    estudiante = Estudiante.objects.filter(documento__icontains=documento)
+
+    if estudiante:
+        return True
+    else:
+        return False
+
+def existeCurso(comision):
+    curso = Curso.objects.filter(comision__icontains=comision)
+
+    if curso:
+        return True
+    else:
+        return False
+
 def estudianteForm(req):
  
 
@@ -26,11 +42,13 @@ def estudianteForm(req):
     if miFormulario.is_valid():
 
       informacion = miFormulario.cleaned_data
+      if existePersona(informacion['documento']):
+        return render(req, "Estudiantes/estudiantes.html", {"message": "Estudiante ya existe",'active_page': 'estudiantes'})
+      else:
+        nuevo_estudiante = Estudiante(documento = informacion['documento'],nombre = informacion['nombre'],apellido = informacion['apellido'],email = informacion['email'],telefono = informacion['telefono'])
+        nuevo_estudiante.save()
 
-      nuevo_estudiante = Estudiante(documento = informacion['documento'],nombre = informacion['nombre'],apellido = informacion['apellido'],email = informacion['email'],telefono = informacion['telefono'])
-      nuevo_estudiante.save()
-
-      return render(req, "Estudiantes/estudiantes.html", {"message": "Estudiante ingresado con éxito",'active_page': 'estudiantes'})
+        return render(req, "Estudiantes/estudiantes.html", {"message": "Estudiante ingresado con éxito",'active_page': 'estudiantes'})
     
     else:
 
@@ -73,11 +91,13 @@ def cursoForm(req):
         if miFormulario.is_valid():
 
             informacion = miFormulario.cleaned_data
+            if existeCurso(informacion['comision']):
+                return render(req, "Cursos/cursos.html", {"message": "Curso con esta comisión ya existe",'active_page': 'cursos'})
+            else:
+                nuevo_curso = Curso(nombre = informacion['nombre'], comision = informacion['comision'])
+                nuevo_curso.save()
 
-            nuevo_curso = Curso(nombre = informacion['nombre'], comision = informacion['comision'])
-            nuevo_curso.save()
-
-            return render(req, "Cursos/cursos.html", {"message": "Curso ingresado con éxito",'active_page': 'cursos'})
+                return render(req, "Cursos/cursos.html", {"message": "Curso ingresado con éxito",'active_page': 'cursos'})
         
         else:
 
@@ -122,11 +142,13 @@ def profesorForm(req):
         if miFormulario.is_valid():
 
             informacion = miFormulario.cleaned_data
+            if existePersona(informacion['documento']):
+                return render(req, "Profesores/profesores.html", {"message": "Profesor ya existe",'active_page': 'profesores'})
+            else:
+                nuevo_profesor = Profesor(documento = informacion['documento'],nombre = informacion['nombre'],apellido = informacion['apellido'],email = informacion['email'],telefono = informacion['telefono'],profesion = informacion['curso'])
+                nuevo_profesor.save()
 
-            nuevo_profesor = Profesor(documento = informacion['documento'],nombre = informacion['nombre'],apellido = informacion['apellido'],email = informacion['email'],telefono = informacion['telefono'],profesion = informacion['curso'])
-            nuevo_profesor.save()
-
-            return render(req, "Profesores/profesores.html", {"message": "Profesor ingresado con éxito",'active_page': 'profesores'})
+                return render(req, "Profesores/profesores.html", {"message": "Profesor ingresado con éxito",'active_page': 'profesores'})
         
         else:
 
@@ -191,9 +213,15 @@ def buscarEntregableW(req):
 
             fecha_entrega = req.GET["fecha_entregable"]
 
-            entregable = Entregable.objects.filter(fecha_entrega__icontains=fecha_entrega)
+            entregables = Entregable.objects.filter(fecha_entrega__icontains=fecha_entrega)
+            
+            for entregable in entregables:
+                if entregable.entregado:
+                    entregable.entregado = "Entregado"
+                else:
+                    entregable.entregado = "NO entregado"
 
-            return render(req, "Entregables/formConsultarEntregable.html", {"entregables": entregable, "fecha_entrega": fecha_entrega})
+            return render(req, "Entregables/formConsultarEntregable.html", {"entregables": entregables, "fecha_entrega": fecha_entrega})
 
         else:
       

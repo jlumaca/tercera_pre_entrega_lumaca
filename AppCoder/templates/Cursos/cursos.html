@@ -21,7 +21,10 @@
         <form id="FormIngresarCurso" class="card" action="{% url 'Cursos' %}" method="POST">{% csrf_token %}
             <h5 id="tituloFormEst" class="card-title fw-400">Ingresar nuevo cursos</h5>
             <div class="card-body">
+              {% if message %}
               <p>{{message}}</p>
+              <a href="{% url 'Cursos' %}" class="button">Volver</a>
+              {% endif %}
               
             <div class="form-group">
               {{ miFormulario.nombre }}
