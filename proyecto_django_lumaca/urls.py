@@ -6,6 +6,6 @@ from AppCoder.views import estudianteForm
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('AppCoder/', include('AppCoder.urls')),
-    path('estudiantes/', estudianteForm)
+    #path('estudiantes/', estudianteForm)
     #path('prueba/', prueba)
 ]

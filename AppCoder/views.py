@@ -7,31 +7,31 @@ from AppCoder.forms import EstudianteFormulario,CursoFormulario, ProfesorFormula
 
 # Views principales
 #################
-def padre(req):
-    return render(req,"padre.html")
+#def padre(req):
+#    return render(req,"padre.html")
 
 def inicio(req):
     return render(req,"inicio.html",{'active_page': 'inicio'})
 
 def existePersona(documento,que_persona):
-    estudiante = Estudiante.objects.filter(documento__icontains=documento)
-    profesor = Profesor.objects.filter(documento__icontains=documento)
+    estudiante = Estudiante.objects.filter(documento=documento)
+    profesor = Profesor.objects.filter(documento=documento)
     
     if que_persona == "Est":
-        if estudiante:
+        if estudiante.exists():
             return True
         else:
             return False
     else:
-        if profesor:
+        if profesor.exists():
             return True
         else:
             return False
 
 def existeCurso(comision):
-    curso = Curso.objects.filter(comision__icontains=comision)
+    curso = Curso.objects.filter(comision=comision)
 
-    if curso:
+    if curso.exists():
         return True
     else:
         return False
@@ -224,9 +224,9 @@ def buscarEntregableW(req):
             
             for entregable in entregables:
                 if entregable.entregado:
-                    entregable.entregado = "Entregado"
+                    entregable.entregado = "Corregido"
                 else:
-                    entregable.entregado = "NO entregado"
+                    entregable.entregado = "No corregido"
 
             return render(req, "Entregables/formConsultarEntregable.html", {"entregables": entregables, "fecha_entrega": fecha_entrega})
 
@@ -239,5 +239,10 @@ def buscarEntregablesTodos(req):
     
     if req.method == "GET":
         entregables = Entregable.objects.all()
+        for entregable in entregables:
+                if entregable.entregado:
+                    entregable.entregado = "Corregido"
+                else:
+                    entregable.entregado = "No corregido"
         return render(req, "Entregables/formConsultarTodosEntregables.html", {"entregables": entregables})
     

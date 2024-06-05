@@ -4,8 +4,8 @@ from AppCoder import views
 #from proyecto_django_lumaca.views import prueba
 
 urlpatterns = [
-    path('', views.padre,name="Padre"),#
-    path('inicio', views.inicio,name="Inicio"),#
+    path('', views.inicio,name="Inicio"),#
+    #path('inicio', views.inicio,name="Inicio"),#
     path('estudiantes', views.estudianteForm,name="Estudiantes"),#ESTUDIANTES
     path('buscarEstudiante', views.buscarEstudianteX,name="BuscarEstudiante"),#ESTUDIANTES
     path('buscarEstudiantes', views.buscarEstudiantesTodos,name="BuscarEstudiantes"),#ESTUDIANTES
