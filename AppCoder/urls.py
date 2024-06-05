@@ -1,11 +1,10 @@
 from django.contrib import admin
 from django.urls import path
 from AppCoder import views
-#from proyecto_django_lumaca.views import prueba
+
 
 urlpatterns = [
     path('', views.inicio,name="Inicio"),#
-    #path('inicio', views.inicio,name="Inicio"),#
     path('estudiantes', views.estudianteForm,name="Estudiantes"),#ESTUDIANTES
     path('buscarEstudiante', views.buscarEstudianteX,name="BuscarEstudiante"),#ESTUDIANTES
     path('buscarEstudiantes', views.buscarEstudiantesTodos,name="BuscarEstudiantes"),#ESTUDIANTES
@@ -18,12 +17,4 @@ urlpatterns = [
     path('entregables', views.entregablesForm,name="Entregables"),#ENTREGABLES
     path('buscarEntregables', views.buscarEntregablesTodos,name="BuscarEntregables"),#ENTREGABLES
     path('buscarEntregable', views.buscarEntregableW,name="BuscarEntregable"),#ENTREGABLES
-    #path('estudiantesForm', views.estudianteForm,name="FormEstudiantes"),#
-    
-    
-    #path('cursosForm', views.cursoForm,name="Cursos"),
-        #path('volverEstudiante', views.estudianteForm,name="Estudiante"),
-    #path('formIngresarEstudiante', views.ingresarEstudiante,name="IngresarEstudiante"),
-    #path('formConsultarEstudiante', views.buscarUnEstudiante,name="ConsultarEstudiante"),
-    #path('formConsultarTodosEstudiantes', views.buscarEstudiantes,name="ConsultarEstudiantes")
 ]
