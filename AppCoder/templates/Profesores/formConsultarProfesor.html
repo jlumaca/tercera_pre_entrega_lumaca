@@ -2,11 +2,13 @@
 {% load static %}
 
 {% block contenidoQueCambia %}
+<title>Consulta</title>
 <div class="page-content page-container" id="page-content"></div>
 <div class="padding">
   <div class="row container d-flex justify-content-center">
 <div class="col-md-6 col-lg-4">
-<p>Documento profesor: {{documento}}</p>
+  <div class="FondoConsulta">
+<p>Documento profesor: <strong>{{documento}}</strong></p>
 
 {% if profesores %}
 
@@ -14,7 +16,11 @@
   {% for profesor in profesores %}
     
     <li>
-      {{profesor.nombre}} - {{profesor.apellido}} - {{profesor.email}} - {{profesor.telefono}}
+      <strong>Nombre:</strong> {{profesor.nombre}} - 
+      <strong>Apellido:</strong> {{profesor.apellido}} - 
+      <strong>Correo:</strong> {{profesor.email}} - 
+      <strong>Telefono:</strong> {{profesor.telefono}} -
+      <strong>Profesión:</strong> {{profesor.profesion}}
     </li>
       
   {% endfor %}
@@ -28,7 +34,7 @@
 {% endif %}
 <a href="{% url 'Profesores' %}" class="btn btn-block btn-bold btn-primary">Volver</a>
 
-
+</div>
 </div>
 </div>
 </div>

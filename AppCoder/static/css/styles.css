@@ -11039,5 +11039,18 @@ h5.card-title {
 }
 
 .FondoConsulta {
-  background-color:white;
+  padding: 1.25rem;
+  background-color:#9f97d1;
+  width: 200%;
+  text-align: left;
+}
+
+.FondoConsulta li {
+  
+  
+  font-size: 1rem; 
+}
+
+.LetrasInicio{
+  color: white;
 }

@@ -2,11 +2,13 @@
 {% load static %}
 
 {% block contenidoQueCambia %}
+<title>Consulta</title>
 <div class="page-content page-container" id="page-content"></div>
 <div class="padding">
   <div class="row container d-flex justify-content-center">
 <div class="col-md-6 col-lg-4">
-<p>Documento estudiante: {{documento}}</p>
+  <div class="FondoConsulta">
+<p>Documento estudiante: <strong>{{documento}}</strong></p>
 
 {% if estudiantes %}
 
@@ -14,7 +16,10 @@
   {% for estudiante in estudiantes %}
     
     <li>
-      {{estudiante.nombre}} - {{estudiante.apellido}} - {{estudiante.email}} - {{estudiante.telefono}}
+              <strong>Nombre:</strong> {{estudiante.nombre}} - 
+              <strong>Apellido:</strong> {{estudiante.apellido}} - 
+              <strong>Correo:</strong> {{estudiante.email}} - 
+              <strong>Telefono:</strong> {{estudiante.telefono}}
     </li>
       
   {% endfor %}
@@ -28,7 +33,7 @@
 {% endif %}
 <a href="{% url 'Estudiantes' %}" class="btn btn-block btn-bold btn-primary">Volver</a>
 
-
+</div>
 </div>
 </div>
 </div>

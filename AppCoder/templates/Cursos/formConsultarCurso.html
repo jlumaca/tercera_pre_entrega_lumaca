@@ -2,11 +2,13 @@
 {% load static %}
 
 {% block contenidoQueCambia %}
+<title>Consulta</title>
 <div class="page-content page-container" id="page-content"></div>
 <div class="padding">
   <div class="row container d-flex justify-content-center">
 <div class="col-md-6 col-lg-4">
-<p>Comision curso: {{comision}}</p>
+  <div class="FondoConsulta">
+<p>Comision curso: <strong>{{comision}}</strong></p>
 
 {% if cursos %}
 
@@ -14,7 +16,7 @@
   {% for curso in cursos %}
     
     <li>
-      {{curso.nombre}}
+      <strong>Nombre del curso:</strong> {{curso.nombre}}
     </li>
       
   {% endfor %}
@@ -26,11 +28,11 @@
   <p>No se encontraron datos!</p>
 
 {% endif %}
-<form id="" class="card" action="{% url 'Cursos' %}" method="GET">
-  <input type="submit" class="btn btn-block btn-bold btn-primary" id="btnVolverCurso" value="Volver">
-</form>
+
+<a href="{% url 'Cursos' %}" class="btn btn-block btn-bold btn-primary">Volver</a>
 
 
+</div>
 </div>
 </div>
 </div>
