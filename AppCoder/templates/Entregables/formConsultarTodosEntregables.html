@@ -2,42 +2,30 @@
 {% load static %}
 
 {% block contenidoQueCambia %}
-<title>Consulta</title>
-<div class="page-content page-container" id="page-content"></div>
-<div class="padding">
-  <div class="row container d-flex justify-content-center">
-<div class="col-md-6 col-lg-4">
-  <div class="FondoConsulta">
-{% if error_message %}
-<p class="MensajeError">{{error_message}}</p>
-{% else %}
-{% if entregables %}
-
-<ul>
-  {% for entregable in entregables %}
-    
-    <li>
-      <strong>Nombre del entregable:</strong> {{entregable.nombre}} - <strong>Fecha:</strong> {{entregable.fecha_entrega}} - <strong>Corregido:</strong> {{entregable.entregado}}
-    </li>
-      
-  {% endfor %}
-
-</ul>
-
-{% else %}
-
-  <p class="MensajeError">No se encontraron datos!</p>
-
-{% endif %}
-{% endif %}
-<a href="{% url 'Entregables' %}" class="btn btn-block btn-bold btn-primary">Volver</a>
-</div>
-
-</div>
-</div>
-</div>
-</div>
-
-
-
+  <title>Consulta</title>
+  <div class="page-content page-container" id="page-content"></div>
+  <div class="padding">
+    <div class="row container d-flex justify-content-center">
+      <div class="col-md-6 col-lg-4">
+        <div class="FondoConsulta">
+          {% if error_message %}
+            <p class="MensajeError">{{error_message}}</p>
+          {% else %}
+            {% if entregables %}
+              <ul>
+                {% for entregable in entregables %}
+                  <li>
+                    <strong>Nombre del entregable:</strong> {{entregable.nombre}} - <strong>Fecha:</strong> {{entregable.fecha_entrega}} - <strong>Corregido:</strong> {{entregable.entregado}}
+                  </li>
+                {% endfor %}
+              </ul>
+            {% else %}
+              <p class="MensajeError">No se encontraron datos!</p>
+            {% endif %}
+          {% endif %}
+          <a href="{% url 'Entregables' %}" class="btn btn-block btn-bold btn-primary">Volver</a>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock %}

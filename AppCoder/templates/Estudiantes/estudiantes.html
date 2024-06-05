@@ -2,86 +2,67 @@
 {% load static %}
 
 {% block contenidoQueCambia %}
+  <title>Estudiantes</title>
+  <label class="etiquetaOpciones" for="opcionEtiqueta">Elige una opción: </label>
+  <select id="opcionEst" onchange="opcionesEst()">
+    <option value="ingresoEst">Ingresar</option>
+    <option value="consultarEst">Consultar</option>
+    <option value="buscarEstudiantes">Consultar todos</option>
+  </select>
 
-<title>Estudiantes</title>
-<label class="etiquetaOpciones" for="opcionEtiqueta">Elige una opción: </label>
-    <select id="opcionEst" onchange="opcionesEst()">
-       
-
-        <option value="ingresoEst">Ingresar</option>
-        <option value="consultarEst">Consultar</option>
-        <option value="buscarEstudiantes">Consultar todos</option>
-    </select>
-
-    <div class="page-content page-container" id="page-content">
-        <div class="padding">
-            <div class="row container d-flex justify-content-center">
-      <div class="col-md-6 col-lg-4">
-        
-        <form id="FormIngresarEstudiante" class="card" action="{% url 'Estudiantes' %}" method="POST">{% csrf_token %}
+  <div class="page-content page-container" id="page-content">
+    <div class="padding">
+      <div class="row container d-flex justify-content-center">
+        <div class="col-md-6 col-lg-4">
+          <form id="FormIngresarEstudiante" class="card" action="{% url 'Estudiantes' %}" method="POST">{% csrf_token %}
             <h5 id="tituloFormEst" class="card-title fw-400">Ingresar nuevo estudiante</h5>
             <div class="card-body">
               {% if error_message %}
-              <p class="MensajeError">{{error_message}}</p>
-              <a href="{% url 'Estudiantes' %}" class="btn btn-block btn-bold btn-primary">Volver</a>
+                <p class="MensajeError">{{error_message}}</p>
+                <a href="{% url 'Estudiantes' %}" class="btn btn-block btn-bold btn-primary">Volver</a>
               {% else %}
-              {% if message %}
-              <p>{{message}}</p>
-              <a href="{% url 'Estudiantes' %}" class="btn btn-block btn-bold btn-primary">Volver</a>
-              {% endif %}
+                {% if message %}
+                  <p>{{message}}</p>
+                  <a href="{% url 'Estudiantes' %}" class="btn btn-block btn-bold btn-primary">Volver</a>
+                {% endif %}
               {% endif %}
               <div class="form-group">
-              {{ miFormulario.documento }}
+                {{ miFormulario.documento }}
+              </div>
+              <div class="form-group">
+                {{ miFormulario.nombre }}
+              </div>
+              <div class="form-group">
+                {{ miFormulario.apellido }}
+              </div>
+              <div class="form-group">
+                {{ miFormulario.email }}
+              </div>
+              <div class="form-group">
+                {{ miFormulario.telefono }}
+              </div>
+              <div class="form-group">
+                {{ miFormulario.submit }}
+              </div>
             </div>
-            <div class="form-group">
-              {{ miFormulario.nombre }}
+          </form>
+          <form id="FormConsultarEstudiante" class="card" action="{% url 'BuscarEstudiante' %}" method="GET" style="display: none;">
+            <h5 id="tituloFormEst" class="card-title fw-400">Consultar estudiante</h5>
+            <div class="card-body">
+              <div class="form-group">
+                <input class="form-control" type="number" placeholder="Documento" name="documentoEstudiante" id="documentoEst">
+              </div>
+              <input type="submit" class="btn btn-block btn-bold btn-primary" id="btnBuscarEst" value="Buscar">
             </div>
-            <div class="form-group">
-              {{ miFormulario.apellido }}
+          </form>
+          <form id="FormConsultarEstudiantesTodos" class="card" action="{% url 'BuscarEstudiantes' %}" method="GET" style="display: none;">{% csrf_token %}
+            <h5 id="tituloFormEst" class="card-title fw-400">Consultar estudiantes</h5>
+            <div class="card-body">
+              <input type="submit" class="btn btn-block btn-bold btn-primary" id="btnTodosEst" value="Buscar todos">
             </div>
-            <div class="form-group">
-              {{ miFormulario.email }}
-            </div>
-            <div class="form-group">
-              {{ miFormulario.telefono }}
-            </div>
-            <div class="form-group">
-              {{ miFormulario.submit }}
-            </div>
-            
-          </div>
-            
-        
-        </form>
-        
-    <form id="FormConsultarEstudiante" class="card" action="{% url 'BuscarEstudiante' %}" method="GET" style="display: none;">
-        <h5 id="tituloFormEst" class="card-title fw-400">Consultar estudiante</h5>
-    
-        <div class="card-body">
-          <div class="form-group">
-            <input class="form-control" type="number" placeholder="Documento" name="documentoEstudiante" id="documentoEst">
-          </div>
-          
-          
-          <input type="submit" class="btn btn-block btn-bold btn-primary" id="btnBuscarEst" value="Buscar">
-          
-        
+          </form>
         </div>
-      </form>
-
-
-      <form id="FormConsultarEstudiantesTodos" class="card" action="{% url 'BuscarEstudiantes' %}" method="GET" style="display: none;">{% csrf_token %}
-        <h5 id="tituloFormEst" class="card-title fw-400">Consultar estudiantes</h5>
-    
-          
-          <div class="card-body">
-            <input type="submit" class="btn btn-block btn-bold btn-primary" id="btnTodosEst" value="Buscar todos">
-          </div>
-        </div>
-      </form>
+      </div>
     </div>
-</div>
- </div>
   </div>        
-             
-{% endblock contenidoQueCambia%}
+{% endblock %}

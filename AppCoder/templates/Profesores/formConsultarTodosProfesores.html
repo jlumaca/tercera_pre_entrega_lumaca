@@ -2,47 +2,35 @@
 {% load static %}
 
 {% block contenidoQueCambia %}
-<title>Consulta</title>
-<div class="page-content page-container" id="page-content"></div>
-<div class="padding">
-  <div class="row container d-flex justify-content-center">
-<div class="col-md-6 col-lg-4">
-  <div class="FondoConsulta">
-    {% if error_message %}
-    <p class="MensajeError">{{error_message}}</p>
-    {% else %}
-{% if profesores %}
-
-<ul>
-  {% for profesor in profesores %}
-    
-    <li>
-              <strong>Documento:</strong> {{profesor.documento}} - 
-              <strong>Nombre:</strong> {{profesor.nombre}} - 
-              <strong>Apellido:</strong> {{profesor.apellido}} - 
-              <strong>Correo:</strong> {{profesor.email}} - 
-              <strong>Telefono:</strong> {{profesor.telefono}} -
-              <strong>Profesión:</strong> {{profesor.profesion}}
-    </li>
-      
-  {% endfor %}
-
-</ul>
-
-{% else %}
-
-  <p class="MensajeError">No se encontraron datos!</p>
-
-{% endif %}
-{% endif %}
-<a href="{% url 'Profesores' %}" class="btn btn-block btn-bold btn-primary">Volver</a>
-
-</div>
-</div>
-</div>
-</div>
-</div>
-
-
-
+  <title>Consulta</title>
+  <div class="page-content page-container" id="page-content"></div>
+  <div class="padding">
+    <div class="row container d-flex justify-content-center">
+      <div class="col-md-6 col-lg-4">
+        <div class="FondoConsulta">
+          {% if error_message %}
+            <p class="MensajeError">{{error_message}}</p>
+          {% else %}
+            {% if profesores %}
+              <ul>
+                {% for profesor in profesores %}
+                  <li>
+                    <strong>Documento:</strong> {{profesor.documento}} - 
+                    <strong>Nombre:</strong> {{profesor.nombre}} - 
+                    <strong>Apellido:</strong> {{profesor.apellido}} - 
+                    <strong>Correo:</strong> {{profesor.email}} - 
+                    <strong>Telefono:</strong> {{profesor.telefono}} -
+                    <strong>Profesión:</strong> {{profesor.profesion}}
+                  </li>
+                {% endfor %}
+              </ul>
+            {% else %}
+              <p class="MensajeError">No se encontraron datos!</p>
+            {% endif %}
+          {% endif %}
+          <a href="{% url 'Profesores' %}" class="btn btn-block btn-bold btn-primary">Volver</a>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock %}

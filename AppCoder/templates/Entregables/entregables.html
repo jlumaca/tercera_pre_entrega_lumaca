@@ -2,78 +2,61 @@
 {% load static %}
 
 {% block contenidoQueCambia %}
-<title>Entregables</title>
-<label class="etiquetaOpciones" for="opcionEtiqueta">Elige una opción: </label>
-    <select id="opcionEntregables" onchange="opcionesEntregables()">
-  
-
-        <option value="ingresoEntregables">Ingresar</option>
-        <option value="consultarEntregables">Consultar</option>
-        <option value="buscarEntregables">Consultar todos</option>
-    </select>
-<div class="page-content page-container" id="page-content">
-        <div class="padding">
-            <div class="row container d-flex justify-content-center">
-    <div class="col-md-6 col-lg-4">
-                <form id="FormIngresarEntregable" class="card" action="{% url 'Entregables' %}" method="POST">{% csrf_token %}
-                  <h5 class="card-title fw-400">Ingresar Entregable</h5>
-  
-                  <div class="card-body">
-                    {% if error_message %}
-                    <p class="MensajeError">{{error_message}}</p>
-                    <a href="{% url 'Entregables' %}" class="btn btn-block btn-bold btn-primary">Volver</a>
-                    {% else %}
-                    {% if message %}
-                    <p>{{message}}</p>
-                    <a href="{% url 'Entregables' %}" class="btn btn-block btn-bold btn-primary">Volver</a>
-                    {% endif %}
-                    {% endif %}
-                    <div class="form-group">
-                    {{ miFormulario.nombre }}
-                  </div>
-                  <div class="form-group">
-                    {{ miFormulario.fecha_de_entrega }}
-                  </div>
-                  <div class="form-group">
-                    <label for="id_entregado" class="form-check-label">Corregido: </label>
-                    {{ miFormulario.entregado }}
-                    
-                  </div>
-                  <div class="form-group">
-                    {{ miFormulario.submit }}
-                  </div>
-                  
-                </div>
-      
-                 
-                </form>
-
-                <form id="FormConsultarEntregable" class="card" action="{% url 'BuscarEntregable' %}" method="GET" style="display: none;">
-                  <h5 id="tituloFormEst" class="card-title fw-400">Consultar entregable</h5>
-              
-                  <div class="card-body">
-                    <div class="form-group">
-                      <input class="form-control" type="date" placeholder="Comision" name="fecha_entregable" id="fecha_entregable">
-                    </div>
-              
-                    
-                    <input type="submit" class="btn btn-block btn-bold btn-primary" id="btnBuscarEntregable" value="Buscar">
-                  
-                  </div>
-                </form>
-          
-          
-                <form id="FormConsultarEntregablesTodos" class="card" action="{% url 'BuscarEntregables' %}" method="GET" style="display: none;">{% csrf_token %}
-                  <h5 id="tituloFormEst" class="card-title fw-400">Consultar entregables</h5>
-                  <div class="card-body">
-                    <input type="submit" class="btn btn-block btn-bold btn-primary" id="btnTodosEntregables" value="Buscar todos">
-                  
-                
-                  </div>
-                </form>
-          
+  <title>Entregables</title>
+  <label class="etiquetaOpciones" for="opcionEtiqueta">Elige una opción: </label>
+  <select id="opcionEntregables" onchange="opcionesEntregables()">
+    <option value="ingresoEntregables">Ingresar</option>
+    <option value="consultarEntregables">Consultar</option>
+    <option value="buscarEntregables">Consultar todos</option>
+  </select>
+  <div class="page-content page-container" id="page-content">
+    <div class="padding">
+      <div class="row container d-flex justify-content-center">
+        <div class="col-md-6 col-lg-4">
+          <form id="FormIngresarEntregable" class="card" action="{% url 'Entregables' %}" method="POST">{% csrf_token %}
+            <h5 class="card-title fw-400">Ingresar Entregable</h5>
+            <div class="card-body">
+              {% if error_message %}
+                <p class="MensajeError">{{error_message}}</p>
+                <a href="{% url 'Entregables' %}" class="btn btn-block btn-bold btn-primary">Volver</a>
+              {% else %}
+                {% if message %}
+                  <p>{{message}}</p>
+                  <a href="{% url 'Entregables' %}" class="btn btn-block btn-bold btn-primary">Volver</a>
+                {% endif %}
+              {% endif %}
+              <div class="form-group">
+                {{ miFormulario.nombre }}
               </div>
-               </div>
-                </div>
-                 </div>
+              <div class="form-group">
+                {{ miFormulario.fecha_de_entrega }}
+              </div>
+              <div class="form-group">
+                <label for="id_entregado" class="form-check-label">Corregido: </label>
+                {{ miFormulario.entregado }}
+              </div>
+              <div class="form-group">
+                {{ miFormulario.submit }}
+              </div>
+            </div>
+          </form>
+          <form id="FormConsultarEntregable" class="card" action="{% url 'BuscarEntregable' %}" method="GET" style="display: none;">
+            <h5 id="tituloFormEst" class="card-title fw-400">Consultar entregable</h5>
+            <div class="card-body">
+              <div class="form-group">
+                <input class="form-control" type="date" placeholder="Comision" name="fecha_entregable" id="fecha_entregable">
+              </div>
+              <input type="submit" class="btn btn-block btn-bold btn-primary" id="btnBuscarEntregable" value="Buscar">
+            </div>
+          </form>
+          <form id="FormConsultarEntregablesTodos" class="card" action="{% url 'BuscarEntregables' %}" method="GET" style="display: none;">{% csrf_token %}
+            <h5 id="tituloFormEst" class="card-title fw-400">Consultar entregables</h5>
+            <div class="card-body">
+              <input type="submit" class="btn btn-block btn-bold btn-primary" id="btnTodosEntregables" value="Buscar todos">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock %}
