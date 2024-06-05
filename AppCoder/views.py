@@ -52,7 +52,7 @@ def estudianteForm(req):
 
                 informacion = miFormulario.cleaned_data
                 if existePersona(informacion['documento'],"Est"):
-                    return render(req, "Estudiantes/estudiantes.html", {"message": "Estudiante ya existe",'active_page': 'estudiantes'})
+                    return render(req, "Estudiantes/estudiantes.html", {"error_message": "Estudiante ya existe",'active_page': 'estudiantes'})
                 else:
                     nuevo_estudiante = Estudiante(documento = informacion['documento'],nombre = informacion['nombre'],apellido = informacion['apellido'],email = informacion['email'],telefono = informacion['telefono'])
                     nuevo_estudiante.save()
@@ -60,7 +60,7 @@ def estudianteForm(req):
                     return render(req, "Estudiantes/estudiantes.html", {"message": "Estudiante ingresado con éxito",'active_page': 'estudiantes'})
                 
             else:
-                return render(req, "Estudiantes/estudiantes.html", {"message": "Datos inválidos",'active_page': 'estudiantes'})
+                return render(req, "Estudiantes/estudiantes.html", {"error_message": "Datos inválidos",'active_page': 'estudiantes'})
         
         else:
 
@@ -92,7 +92,7 @@ def buscarEstudianteX(req):
 
         else:
             
-            return render(req, "Estudiantes/formConsultarEstudiante.html", {"message": "No envias el dato del estudiante",'active_page': 'estudiantes'})
+            return render(req, "Estudiantes/formConsultarEstudiante.html", {"error_message": "No envias el dato del estudiante",'active_page': 'estudiantes'})
     except OperationalError as e:
     # Manejar errores operativos de la base de datos
         return render(req, "Estudiantes/formConsultarEstudiante.html", {'error_message':f"Ha ocurrido un error no controlado con la base de datos: {str(e)}",'active_page': 'estudiantes'})
@@ -135,7 +135,7 @@ def cursoForm(req):
 
                     informacion = miFormulario.cleaned_data
                     if existeCurso(informacion['comision']):
-                        return render(req, "Cursos/cursos.html", {"message": "Curso con esta comisión ya existe",'active_page': 'cursos'})
+                        return render(req, "Cursos/cursos.html", {"error_message": "Curso con esta comisión ya existe",'active_page': 'cursos'})
                     else:
                         nuevo_curso = Curso(nombre = informacion['nombre'], comision = informacion['comision'])
                         nuevo_curso.save()
@@ -144,7 +144,7 @@ def cursoForm(req):
                 
                 else:
 
-                    return render(req, "Cursos/cursos.html", {"message": "Datos inválidos",'active_page': 'cursos'})
+                    return render(req, "Cursos/cursos.html", {"error_message": "Datos inválidos",'active_page': 'cursos'})
             
             else:
 
@@ -177,7 +177,7 @@ def buscarCursoY(req):
 
         else:
       
-            return render(req, "Cursos/formConsultarCurso.html", {"message": "No envias el dato del curso",'active_page': 'cursos'})  
+            return render(req, "Cursos/formConsultarCurso.html", {"error_message": "No envias el dato del curso",'active_page': 'cursos'})  
     except OperationalError as e:
     # Manejar errores operativos de la base de datos
         return render(req, "Cursos/formConsultarCurso.html", {'error_message':f"Ha ocurrido un error no controlado con la base de datos: {str(e)}",'active_page': 'cursos'})
@@ -222,7 +222,7 @@ def profesorForm(req):
 
                 informacion = miFormulario.cleaned_data
                 if existePersona(informacion['documento'],"Prof"):
-                    return render(req, "Profesores/profesores.html", {"message": "Profesor ya existe",'active_page': 'profesores'})
+                    return render(req, "Profesores/profesores.html", {"error_message": "Profesor ya existe",'active_page': 'profesores'})
                 else:
                     nuevo_profesor = Profesor(documento = informacion['documento'],nombre = informacion['nombre'],apellido = informacion['apellido'],email = informacion['email'],telefono = informacion['telefono'],profesion = informacion['curso'])
                     nuevo_profesor.save()
@@ -231,7 +231,7 @@ def profesorForm(req):
             
             else:
 
-                return render(req, "Profesores/profesores.html", {"message": "Datos inválidos",'active_page': 'profesores'})
+                return render(req, "Profesores/profesores.html", {"error_message": "Datos inválidos",'active_page': 'profesores'})
         
         else:
 
@@ -262,7 +262,7 @@ def buscarProfesorZ(req):
 
         else:
       
-            return render(req, "Profesores/formConsultarProfesor.html", {"message": "No envias el dato del curso",'active_page': 'profesores'})
+            return render(req, "Profesores/formConsultarProfesor.html", {"error_message": "No envias el dato del curso",'active_page': 'profesores'})
     except OperationalError as e:
     # Manejar errores operativos de la base de datos
         return render(req, "Profesores/formConsultarProfesor.html", {'error_message':f"Ha ocurrido un error no controlado con la base de datos: {str(e)}",'active_page': 'profesores'})
@@ -315,7 +315,7 @@ def entregablesForm(req):
             
             else:
 
-                return render(req, "Entregables/entregables.html", {"message": "Datos inválidos",'active_page': 'entregables'})
+                return render(req, "Entregables/entregables.html", {"error_message": "Datos inválidos",'active_page': 'entregables'})
         
         else:
 
@@ -352,7 +352,7 @@ def buscarEntregableW(req):
 
         else:
       
-            return render(req, "Entregables/formConsultarEntregable.html", {"message": "No envias el dato del entregable",'active_page': 'entregables'})  
+            return render(req, "Entregables/formConsultarEntregable.html", {"error_message": "No envias el dato del entregable",'active_page': 'entregables'})  
     except OperationalError as e:
     # Manejar errores operativos de la base de datos
         return render(req, "Entregables/formConsultarEntregable.html", {'error_message':f"Ha ocurrido un error no controlado con la base de datos: {str(e)}",'active_page': 'entregables'})

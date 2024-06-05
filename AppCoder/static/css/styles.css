@@ -11054,3 +11054,7 @@ h5.card-title {
 .LetrasInicio{
   color: white;
 }
+
+.MensajeError{
+  color: red;
+}

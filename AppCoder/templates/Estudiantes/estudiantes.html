@@ -22,7 +22,7 @@
             <h5 id="tituloFormEst" class="card-title fw-400">Ingresar nuevo estudiante</h5>
             <div class="card-body">
               {% if error_message %}
-              <p>{{error_message}}</p>
+              <p class="MensajeError">{{error_message}}</p>
               <a href="{% url 'Estudiantes' %}" class="btn btn-block btn-bold btn-primary">Volver</a>
               {% else %}
               {% if message %}
