@@ -19,9 +19,14 @@
                   <h5 class="card-title fw-400">Ingresar Profesor</h5>
     
                   <div class="card-body">
+                    {% if error_message %}
+                    <p>{{error_message}}</p>
+                    <a href="{% url 'Profesores' %}" class="btn btn-block btn-bold btn-primary">Volver</a>
+                    {% else %}
                     {% if message %}
                     <p>{{message}}</p>
                     <a href="{% url 'Profesores' %}" class="btn btn-block btn-bold btn-primary">Volver</a>
+                    {% endif %}
                     {% endif %}
                     <div class="form-group">
                     {{ miFormulario.documento }}

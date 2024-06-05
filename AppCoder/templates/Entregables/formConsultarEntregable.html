@@ -9,6 +9,9 @@
 <div class="col-md-6 col-lg-4">
   <div class="FondoConsulta">
 <p>Entregables subidos el día: <strong>{{fecha_entregable}}</strong></p>
+{% if error_message %}
+<p>{{error_message}}</p>
+{% else %}
 
 {% if entregables %}
 
@@ -27,6 +30,7 @@
 
   <p>No se encontraron datos!</p>
 
+{% endif %}
 {% endif %}
 <a href="{% url 'Entregables' %}" class="btn btn-block btn-bold btn-primary">Volver</a>
 

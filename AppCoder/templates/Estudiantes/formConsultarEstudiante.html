@@ -9,7 +9,9 @@
 <div class="col-md-6 col-lg-4">
   <div class="FondoConsulta">
 <p>Documento estudiante: <strong>{{documento}}</strong></p>
-
+{% if error_message %}
+<p>{{error_message}}</p>
+{% else %}
 {% if estudiantes %}
 
 <ul>
@@ -30,6 +32,7 @@
 
   <p>No se encontraron datos!</p>
 
+{% endif %}
 {% endif %}
 <a href="{% url 'Estudiantes' %}" class="btn btn-block btn-bold btn-primary">Volver</a>
 

@@ -8,7 +8,9 @@
   <div class="row container d-flex justify-content-center">
 <div class="col-md-6 col-lg-4">
   <div class="FondoConsulta">
-
+    {% if error_message %}
+    <p>{{error_message}}</p>
+    {% else %}
 {% if profesores %}
 
 <ul>
@@ -31,6 +33,7 @@
 
   <p>No se encontraron datos!</p>
 
+{% endif %}
 {% endif %}
 <a href="{% url 'Profesores' %}" class="btn btn-block btn-bold btn-primary">Volver</a>
 

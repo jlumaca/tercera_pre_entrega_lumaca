@@ -21,11 +21,15 @@
         <form id="FormIngresarEstudiante" class="card" action="{% url 'Estudiantes' %}" method="POST">{% csrf_token %}
             <h5 id="tituloFormEst" class="card-title fw-400">Ingresar nuevo estudiante</h5>
             <div class="card-body">
+              {% if error_message %}
+              <p>{{error_message}}</p>
+              <a href="{% url 'Estudiantes' %}" class="btn btn-block btn-bold btn-primary">Volver</a>
+              {% else %}
               {% if message %}
               <p>{{message}}</p>
               <a href="{% url 'Estudiantes' %}" class="btn btn-block btn-bold btn-primary">Volver</a>
               {% endif %}
-             
+              {% endif %}
               <div class="form-group">
               {{ miFormulario.documento }}
             </div>
