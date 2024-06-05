@@ -2,8 +2,7 @@
 {% load static %}
 
 {% block contenidoQueCambia %}
-
-
+<title>Cursos</title>
 <label class="etiquetaOpciones" for="opcionEtiqueta">Elige una opción: </label>
     <select id="opcionCursos" onchange="opcionesCursos()">
        
@@ -19,11 +18,11 @@
       <div class="col-md-6 col-lg-4">
         
         <form id="FormIngresarCurso" class="card" action="{% url 'Cursos' %}" method="POST">{% csrf_token %}
-            <h5 id="tituloFormEst" class="card-title fw-400">Ingresar nuevo cursos</h5>
+            <h5 id="tituloFormEst" class="card-title fw-400">Ingresar nuevo curso</h5>
             <div class="card-body">
               {% if message %}
               <p>{{message}}</p>
-              <a href="{% url 'Cursos' %}" class="button">Volver</a>
+              <a href="{% url 'Cursos' %}" class="btn btn-block btn-bold btn-primary">Volver</a>
               {% endif %}
               
             <div class="form-group">
