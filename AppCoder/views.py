@@ -86,7 +86,7 @@ def buscarEstudianteX(req):
 
             documento = req.GET["documentoEstudiante"]
 
-            estudiante = Estudiante.objects.filter(documento__icontains=documento)
+            estudiante = Estudiante.objects.filter(documento=documento)
 
             return render(req, "Estudiantes/formConsultarEstudiante.html", {"estudiantes": estudiante, "documento": documento,'active_page': 'estudiantes'})
 
@@ -171,7 +171,7 @@ def buscarCursoY(req):
 
             comision = req.GET["comisionCurso"]
 
-            curso = Curso.objects.filter(comision__icontains=comision)
+            curso = Curso.objects.filter(comision=comision)
 
             return render(req, "Cursos/formConsultarCurso.html", {"cursos": curso, "comision": comision,'active_page': 'cursos'})
 
@@ -256,7 +256,7 @@ def buscarProfesorZ(req):
 
             documento = req.GET["documentoProfesor"]
 
-            profesor = Profesor.objects.filter(documento__icontains=documento)
+            profesor = Profesor.objects.filter(documento=documento)
 
             return render(req, "Profesores/formConsultarProfesor.html", {"profesores": profesor, "documento": documento,'active_page': 'profesores'})
 
@@ -340,7 +340,7 @@ def buscarEntregableW(req):
 
             fecha_entrega = req.GET["fecha_entregable"]
 
-            entregables = Entregable.objects.filter(fecha_entrega__icontains=fecha_entrega)
+            entregables = Entregable.objects.filter(fecha_entrega=fecha_entrega)
             
             for entregable in entregables:
                 if entregable.entregado:
