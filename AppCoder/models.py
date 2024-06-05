@@ -1,6 +1,6 @@
 from django.db import models
 
-# Create your models here.
+# MODELS CON SUS RESPECTIVAS COLUMNAS
 
 class Estudiante(models.Model):
     documento = models.CharField(max_length=10)

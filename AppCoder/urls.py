@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import path
 from AppCoder import views
 
-
+#TODOS LOS URLS QUE SE USAN EN LA APLICACION PARA LOS DIFERENTES MODELS
 urlpatterns = [
     path('', views.inicio,name="Inicio"),#
     path('estudiantes', views.estudianteForm,name="Estudiantes"),#ESTUDIANTES

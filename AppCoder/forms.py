@@ -1,6 +1,6 @@
 from django import forms
 
-
+#FORMULARIOS DE INGRESO DE DATOS CON LOS ESTILOS INCLUIDOS
 class EstudianteFormulario(forms.Form):
     documento = forms.CharField(
         widget=forms.NumberInput(attrs={
