@@ -44,15 +44,19 @@
             <h5 id="tituloFormEst" class="card-title fw-400">Consultar entregable</h5>
             <div class="card-body">
               <div class="form-group">
-                <input class="form-control" type="date" placeholder="Comision" name="fecha_entregable" id="fecha_entregable">
+                {{ miFormulario.fecha_de_entrega }}
               </div>
-              <input type="submit" class="btn btn-block btn-bold btn-primary" id="btnBuscarEntregable" value="Buscar">
+              <div class="form-group">
+                {{ miFormulario.buscar }}
+              </div>
             </div>
           </form>
           <form id="FormConsultarEntregablesTodos" class="card" action="{% url 'BuscarEntregables' %}" method="GET" style="display: none;">{% csrf_token %}
             <h5 id="tituloFormEst" class="card-title fw-400">Consultar entregables</h5>
             <div class="card-body">
-              <input type="submit" class="btn btn-block btn-bold btn-primary" id="btnTodosEntregables" value="Buscar todos">
+              <div class="form-group">
+                {{ miFormulario.buscar }}
+              </div>
             </div>
           </form>
         </div>

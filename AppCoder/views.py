@@ -79,17 +79,27 @@ def estudianteForm(req):
 #RENDERIZA EL FORMULARIO DE CONSULTAS DE UN CIERTO ESTUDIANTE
 def buscarEstudianteX(req):
     try:
-        if req.GET["documentoEstudiante"]:
-
-            documento = req.GET["documentoEstudiante"]
-
-            estudiante = Estudiante.objects.filter(documento=documento)
-
-            return render(req, "Estudiantes/formConsultarEstudiante.html", {"estudiantes": estudiante, "documento": documento,'active_page': 'estudiantes'})
-
-        else:
+        if req.method == 'GET':
             
-            return render(req, "Estudiantes/formConsultarEstudiante.html", {"error_message": "No envias el dato del estudiante",'active_page': 'estudiantes'})
+            miFormulario = EstudianteFormulario(req.GET)
+            if miFormulario.is_valid():
+                
+                informacion = miFormulario.cleaned_data
+
+                documento = informacion["documento"]
+
+                estudiante = Estudiante.objects.filter(documento=documento)
+
+                return render(req, "Estudiantes/formConsultarEstudiante.html", {"miFormulario": miFormulario,"estudiantes": estudiante, 'active_page': 'estudiantes',"documento_label":documento})
+        
+
+            else:
+                
+                return render(req, "Estudiantes/formConsultarEstudiante.html", {"error_message": "Formulario no valido",'active_page': 'estudiantes'})  
+        
+        else:
+            miFormulario = EstudianteFormulario()
+            return render(req, "Estudiantes/formConsultarEstudiante.html", {"miFormulario": miFormulario,'active_page': 'estudiantes'})
     except OperationalError as e:
     # MANEJA ERRORES OPERATIVOS CON LA BASE DE DATOS
         return render(req, "Estudiantes/formConsultarEstudiante.html", {'error_message':f"Ha ocurrido un error no controlado con la base de datos: {str(e)}",'active_page': 'estudiantes'})
@@ -106,9 +116,25 @@ def buscarEstudianteX(req):
 #RENDERIZA EL FORMULARIO DE CONSULTAS DE TODOS LOS ESTUDIANTES
 def buscarEstudiantesTodos(req):
     try:
-        if req.method == "GET":
-            estudiantes = Estudiante.objects.all()
-            return render(req, "Estudiantes/formConsultarTodosEstudiantes.html", {"estudiantes": estudiantes,'active_page': 'estudiantes'})
+        if req.method == 'GET':
+            
+                miFormulario = EstudianteFormulario(req.GET)
+                if miFormulario.is_valid():
+                    estudiantes = Estudiante.objects.all()
+
+                    return render(req, "Estudiantes/formConsultarTodosEstudiantes.html", {"miFormulario": miFormulario,"estudiantes": estudiantes, 'active_page': 'estudiantes'})
+        
+
+                else:
+                
+                    return render(req, "Estudiantes/formConsultarTodosEstudiantes.html", {"error_message": "Formulario no valido",'active_page': 'estudiantes'})  
+        
+        else:
+            miFormulario = EstudianteFormulario()
+            return render(req, "Estudiantes/formConsultarTodosEstudiantes.html", {"miFormulario": miFormulario,'active_page': 'estudiantes'})
+    
+    
+    
     except OperationalError as e:
     # MANEJA ERRORES OPERATIVOS CON LA BASE DE DATOS
         return render(req, "Estudiantes/formConsultarTodosEstudiantes.html", {'error_message':f"Ha ocurrido un error no controlado con la base de datos: {str(e)}",'active_page': 'estudiantes'})
@@ -166,17 +192,28 @@ def cursoForm(req):
 #RENDERIZA EL FORMULARIO DE CONSULTAS DE UN CIERTO CURSO SEGUN COMISION
 def buscarCursoY(req):
     try:
-        if req.GET["comisionCurso"]:
+        if req.method == 'GET':
+            
+            miFormulario = CursoFormulario(req.GET)
+            if miFormulario.is_valid():
+                
+                informacion = miFormulario.cleaned_data
 
-            comision = req.GET["comisionCurso"]
+                comision = informacion["comision"]
 
-            curso = Curso.objects.filter(comision=comision)
+                curso = Curso.objects.filter(comision=comision)
 
-            return render(req, "Cursos/formConsultarCurso.html", {"cursos": curso, "comision": comision,'active_page': 'cursos'})
+                return render(req, "Cursos/formConsultarCurso.html", {"miFormulario": miFormulario,"cursos": curso, 'active_page': 'cursos',"comision_label":comision})
+        
 
+            else:
+                
+                return render(req, "Cursos/formConsultarCurso.html", {"error_message": "Formulario no valido",'active_page': 'cursos'})  
+        
         else:
-      
-            return render(req, "Cursos/formConsultarCurso.html", {"error_message": "No envias el dato del curso",'active_page': 'cursos'})  
+            miFormulario = CursoFormulario()
+            return render(req, "Cursos/formConsultarCurso.html", {"miFormulario": miFormulario,'active_page': 'cursos'})
+
     except OperationalError as e:
     # MANEJA ERRORES OPERATIVOS CON LA BASE DE DATOS
         return render(req, "Cursos/formConsultarCurso.html", {'error_message':f"Ha ocurrido un error no controlado con la base de datos: {str(e)}",'active_page': 'cursos'})
@@ -193,9 +230,24 @@ def buscarCursoY(req):
 #RENDERIZA EL FORMULARIO DE CONSULTAS DE TODOS LOS CURSOS
 def buscarCursosTodos(req):
     try:
-        if req.method == "GET":
-            estudiantes = Curso.objects.all()
-            return render(req, "Cursos/formConsultarTodosCursos.html", {"cursos": estudiantes,'active_page': 'cursos'})
+        if req.method == 'GET':
+            
+                miFormulario = CursoFormulario(req.GET)
+                if miFormulario.is_valid():
+                    curso = Curso.objects.all()
+
+                    return render(req, "Cursos/formConsultarTodosCursos.html", {"miFormulario": miFormulario,"cursos": curso, 'active_page': 'cursos'})
+        
+
+                else:
+                
+                    return render(req, "Cursos/formConsultarTodosCursos.html", {"error_message": "Formulario no valido",'active_page': 'cursos'})  
+        
+        else:
+            miFormulario = CursoFormulario()
+            return render(req, "Cursos/formConsultarTodosCursos.html", {"miFormulario": miFormulario,'active_page': 'cursos'})
+    
+    
     
     except OperationalError as e:
     # MANEJA ERRORES OPERATIVOS CON LA BASE DE DATOS
@@ -252,18 +304,28 @@ def profesorForm(req):
 
 #RENDERIZA EL FORMULARIO DE CONSULTAS DE UN CIERTO PROFESOR SEGUN DOCUMENTO
 def buscarProfesorZ(req):
-    try:
-        if req.GET["documentoProfesor"]:
+    try:       
+        if req.method == 'GET':
+            
+            miFormulario = ProfesorFormulario(req.GET)
+            if miFormulario.is_valid():
+                
+                informacion = miFormulario.cleaned_data
 
-            documento = req.GET["documentoProfesor"]
+                documento = informacion["documento"]
 
-            profesor = Profesor.objects.filter(documento=documento)
+                profesor = Profesor.objects.filter(documento=documento)
 
-            return render(req, "Profesores/formConsultarProfesor.html", {"profesores": profesor, "documento": documento,'active_page': 'profesores'})
+                return render(req, "Profesores/formConsultarProfesor.html", {"miFormulario": miFormulario,"profesores": profesor, 'active_page': 'profesores',"documento_label":documento})
+        
 
+            else:
+                
+                return render(req, "Profesores/formConsultarProfesor.html", {"error_message": "Formulario no valido",'active_page': 'profesores'})  
+        
         else:
-      
-            return render(req, "Profesores/formConsultarProfesor.html", {"error_message": "No envias el dato del curso",'active_page': 'profesores'})
+            miFormulario = ProfesorFormulario()
+            return render(req, "Profesores/formConsultarProfesor.html", {"miFormulario": miFormulario,'active_page': 'profesores'})
     except OperationalError as e:
     # MANEJA ERRORES OPERATIVOS CON LA BASE DE DATOS
         return render(req, "Profesores/formConsultarProfesor.html", {'error_message':f"Ha ocurrido un error no controlado con la base de datos: {str(e)}",'active_page': 'profesores'})
@@ -280,9 +342,22 @@ def buscarProfesorZ(req):
 #RENDERIZA EL FORMULARIO DE CONSULTAS DE TODOS LOS PROFESORES
 def buscarProfesoresTodos(req):
     try:
-        if req.method == "GET":
-            profesores = Profesor.objects.all()
-            return render(req, "Profesores/formConsultarTodosProfesores.html", {"profesores": profesores,'active_page': 'profesores'})
+        if req.method == 'GET':
+            
+                miFormulario = ProfesorFormulario(req.GET)
+                if miFormulario.is_valid():
+                    profesores = Profesor.objects.all()
+
+                    return render(req, "Profesores/formConsultarTodosProfesores.html", {"miFormulario": miFormulario,"profesores": profesores, 'active_page': 'profesores'})
+        
+
+                else:
+                
+                    return render(req, "Profesores/formConsultarTodosProfesores.html", {"error_message": "Formulario no valido",'active_page': 'profesores'})  
+        
+        else:
+            miFormulario = ProfesorFormulario()
+            return render(req, "Profesores/formConsultarTodosProfesores.html", {"miFormulario": miFormulario,'active_page': 'profesores'})
     except OperationalError as e:
     # MANEJA ERRORES OPERATIVOS CON LA BASE DE DATOS
         return render(req, "Profesores/formConsultarTodosProfesores.html", {'error_message':f"Ha ocurrido un error no controlado con la base de datos: {str(e)}",'active_page': 'profesores'})
@@ -337,23 +412,32 @@ def entregablesForm(req):
 #RENDERIZA EL FORMULARIO DE CONSULTAS DE LOS ENTREGABLES SEGUN LA FECHA INGRESADA
 def buscarEntregableW(req):
     try:
-        if req.GET["fecha_entregable"]:
-
-            fecha_entrega = req.GET["fecha_entregable"]
-
-            entregables = Entregable.objects.filter(fecha_entrega=fecha_entrega)
+        if req.method == 'GET':
             
-            for entregable in entregables:
-                if entregable.entregado:
-                    entregable.entregado = "Corregido"
+                miFormulario = EntregableFormulario(req.GET)
+                if miFormulario.is_valid():
+                
+                    informacion = miFormulario.cleaned_data
+
+                    fecha_de_entrega = informacion["fecha_de_entrega"]
+
+                    entregables = Entregable.objects.filter(fecha_entrega=fecha_de_entrega)
+                
+                    for entregable in entregables:
+                        if entregable.entregado:
+                            entregable.entregado = "Corregido"
+                        else:
+                            entregable.entregado = "No corregido"
+                    return render(req, "Entregables/formConsultarEntregable.html", {"miFormulario": miFormulario,"entregables": entregables, 'active_page': 'entregables',"fecha_entrega_label":fecha_de_entrega})
+        
+
                 else:
-                    entregable.entregado = "No corregido"
-
-            return render(req, "Entregables/formConsultarEntregable.html", {"entregables": entregables, "fecha_entrega": fecha_entrega,'active_page': 'entregables'})
-
+                
+                    return render(req, "Entregables/formConsultarEntregable.html", {"error_message": "Formulario no valido",'active_page': 'entregables'})  
+        
         else:
-      
-            return render(req, "Entregables/formConsultarEntregable.html", {"error_message": "No envias el dato del entregable",'active_page': 'entregables'})  
+                miFormulario = EntregableFormulario()
+                return render(req, "Entregables/formConsultarEntregable.html", {"miFormulario": miFormulario,'active_page': 'entregables'})  
     except OperationalError as e:
     # MANEJA ERRORES OPERATIVOS CON LA BASE DE DATOS
         return render(req, "Entregables/formConsultarEntregable.html", {'error_message':f"Ha ocurrido un error no controlado con la base de datos: {str(e)}",'active_page': 'entregables'})
@@ -370,14 +454,28 @@ def buscarEntregableW(req):
 #RENDERIZA EL FORMULARIO DE CONSULTAS DE TODOS LOS ENTREGABLES
 def buscarEntregablesTodos(req):
     try:
-        if req.method == "GET":
-            entregables = Entregable.objects.all()
-            for entregable in entregables:
-                    if entregable.entregado:
-                        entregable.entregado = "Corregido"
-                    else:
-                        entregable.entregado = "No corregido"
-            return render(req, "Entregables/formConsultarTodosEntregables.html", {"entregables": entregables,'active_page': 'entregables'})
+        if req.method == 'GET':
+            
+                miFormulario = EntregableFormulario(req.GET)
+                if miFormulario.is_valid():
+                    entregables = Entregable.objects.all()
+                    for entregable in entregables:
+                        if entregable.entregado:
+                            entregable.entregado = "Corregido"
+                        else:
+                            entregable.entregado = "No corregido"
+
+                    return render(req, "Entregables/formConsultarTodosEntregables.html", {"miFormulario": miFormulario,"entregables": entregables, 'active_page': 'entregables'})
+        
+
+                else:
+                
+                    return render(req, "Entregables/formConsultarTodosEntregables.html", {"error_message": "Formulario no valido",'active_page': 'entregables'})  
+        
+        else:
+            miFormulario = EntregableFormulario()
+            return render(req, "Entregables/formConsultarTodosEntregables.html", {"miFormulario": miFormulario,'active_page': 'entregables'})
+    
     except OperationalError as e:
     # MANEJA ERRORES OPERATIVOS CON LA BASE DE DATOS
         return render(req, "Entregables/formConsultarTodosEntregables.html", {'error_message':f"Ha ocurrido un error no controlado con la base de datos: {str(e)}",'active_page': 'entregables'})

@@ -42,16 +42,20 @@
                         <h5 id="tituloFormEst" class="card-title fw-400">Consultar curso</h5>
                         <div class="card-body">
                             <div class="form-group">
-                                <input class="form-control" type="number" placeholder="Comision" name="comisionCurso" id="comisionCurso">
+                                {{ miFormulario.comision }}
                             </div>
-                            <input type="submit" class="btn btn-block btn-bold btn-primary" id="btnBuscarCurso" value="Buscar">
+                            <div class="form-group">
+                                {{ miFormulario.buscar }}
+                            </div>
                         </div>
                     </form>
 
                     <form id="FormConsultarCursosTodos" class="card" action="{% url 'BuscarCursos' %}" method="GET" style="display: none;">
                         <h5 id="tituloFormCurso" class="card-title fw-400">Consultar cursos</h5>
                         <div class="card-body">
-                            <input type="submit" class="btn btn-block btn-bold btn-primary" id="btnTodosCursos" value="Buscar todos">
+                            <div class="form-group">
+                                {{ miFormulario.buscar }}
+                            </div>
                         </div>
                     </form>
                 </div>

@@ -50,15 +50,19 @@
             <h5 id="tituloFormEst" class="card-title fw-400">Consultar estudiante</h5>
             <div class="card-body">
               <div class="form-group">
-                <input class="form-control" type="number" placeholder="Documento" name="documentoEstudiante" id="documentoEst">
+                {{ miFormulario.documento }}
               </div>
-              <input type="submit" class="btn btn-block btn-bold btn-primary" id="btnBuscarEst" value="Buscar">
+              <div class="form-group">
+                {{ miFormulario.buscar }}
+              </div>
             </div>
           </form>
           <form id="FormConsultarEstudiantesTodos" class="card" action="{% url 'BuscarEstudiantes' %}" method="GET" style="display: none;">{% csrf_token %}
             <h5 id="tituloFormEst" class="card-title fw-400">Consultar estudiantes</h5>
             <div class="card-body">
-              <input type="submit" class="btn btn-block btn-bold btn-primary" id="btnTodosEst" value="Buscar todos">
+              <div class="form-group">
+                {{ miFormulario.buscar }}
+              </div>
             </div>
           </form>
         </div>

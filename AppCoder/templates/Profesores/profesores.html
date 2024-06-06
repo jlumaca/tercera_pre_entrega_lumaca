@@ -54,16 +54,20 @@
                         <h5 id="tituloFormEst" class="card-title fw-400">Consultar profesor</h5>
                         <div class="card-body">
                             <div class="form-group">
-                                <input class="form-control" type="number" placeholder="Documento" name="documentoProfesor" id="documentoProf">
+                                {{ miFormulario.documento }}
                             </div>
-                            <input type="submit" class="btn btn-block btn-bold btn-primary" id="btnBuscarProf" value="Buscar">
+                            <div class="form-group">
+                                {{ miFormulario.buscar }}
+                            </div>
                         </div>
                     </form>
 
                     <form id="FormConsultarProfesoresTodos" class="card" action="{% url 'BuscarProfesores' %}" method="GET" style="display: none;">
                         <h5 id="tituloFormEst" class="card-title fw-400">Consultar profesores</h5>
                         <div class="card-body">
-                            <input type="submit" class="btn btn-block btn-bold btn-primary" id="btnTodosProf" value="Buscar todos">
+                            <div class="form-group">
+                                {{ miFormulario.buscar }}
+                            </div>
                         </div>
                     </form>
                 </div>
