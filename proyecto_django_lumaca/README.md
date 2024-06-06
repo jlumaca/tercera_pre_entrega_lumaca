@@ -11,6 +11,6 @@ Para comprobar el funcionamiento del sitio web se puede seguir el siguiente cami
 
 
 
-USUARIO Y CONTRASEÑA DEL PANEL DE CONTROL /admin:
+USUARIO Y CONTRASEÑA PARA PANEL DE CONTROL /admin:
 -->Usuario: Admin
 -->Contraseña: admin1234
